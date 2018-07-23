@@ -1,7 +1,7 @@
 var ceil = document.getElementsByClassName("game-item"), // ищем все ячейки
     reset = document.getElementById("reset-game"), // ресет
-    changename = document.getElementById("change-name"),
-    message = document.getElementById("message"), // сообщение
+    changename = document.getElementById("change-name");
+message = document.getElementById("message"), // сообщение
     player = "", // первый игрок х
     stepCount = 0, // счетчик шагов наш
     checkwinfirstplayer = true,
