@@ -1,0 +1,321 @@
+*
+  padding: 0
+  margin: 0
+
+a
+  text-decoration: none
+  color: #3BAFBE
+
+ul
+  list-style-type: none
+
+.main-container-blocks
+  display: grid
+  grid-template-rows: 150px 1fr 1fr 1fr 250px mimax(50px, 1fr)
+  grid-template-areas: "header" "important-information" "information-big-img" "information-small-img" "footer-1" "footer-2"
+  .header
+    grid-area: header
+    padding-top: 10px
+    border-top: 10px solid #3BAFBE
+    display: grid
+    grid-template-columns: 1fr 2fr
+    .image_social
+      display: flex
+      align-items: center
+      margin-left: 10px
+      img
+        width: 30px
+        height: 30px
+        padding: 0px 10px
+    .logo
+      padding-left: 20px
+    .logo-big
+      color: #4a4a4a
+      margin: 0px 0px
+      font-size: 40px
+    .logo-small
+      color: #999
+  .search_input
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    input
+      width: 200px
+      height: 25px
+      padding: 3px
+      background-color: #4a4a4a
+      color: #fff
+      font-size: 15px
+      border: none
+      margin-right: 5px
+      border-radius: 5px
+    button
+        padding: 6px
+        wdith: 40px
+        height: 30px
+        border-radius: 7px
+        font-size: 14px
+        background: #3BAFBE
+        color: #FFFFFF
+  .menu
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    ul
+      display: flex
+      flex-wrap: wrap
+      list-style-type: none
+      justify-content: space-around
+      align-items: end
+      li
+        a
+          margin: 0px 10px
+          color: #4a4a4a
+          text-decoration: none
+        a:hover
+          color: #3DAFBD
+
+  .important-information
+    grid-area: important-information
+    display: flex
+    flex-direction: rows
+    flex-wrap: wrap
+    justify-content: space-around
+    border-top: 1px solid silver
+    .inner_block_information_and_navigation:nth-child(1)
+      padding-top: 25px
+      flex-basis: 400px
+      padding-left: 10px
+      img
+        width: 450px
+        height: 350px
+    .inner_block_information_and_navigation:nth-child(2)
+      margin-top: 30px
+      flex-basis: 585px
+      .navigation_img
+        width: 90px
+        height: 30px
+        margin-top: 20px
+        margin-left: 490px
+        img
+          width: 90px
+          height: 30px
+      button
+        padding: 6px
+        wdith: 40px
+        height: 35px
+        border-radius: 7px
+        font-size: 18px
+        background: #3BAFBE
+        color: #FFFFFF
+        margin-top: 20px
+      h2
+        text-align: left
+        color: #666666
+        font-size: 50px
+        font-family: 'Open Sans'
+        font-style: normal
+        font-weight: 400
+        src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff')
+      p
+        font-weight: lighter
+        font-family: Georgia
+        font-style: italic
+        color: #999999
+        font-size: 19px
+        margin-top: 15px
+        line-height: 35px
+  .information-big-img
+    grid-area: information-big-img
+    display: flex
+    flex-wrap: wrap
+    border-top: 1px solid silver
+    justify-content: space-around
+    .title-3-images
+      flex-basis: 200px
+      padding-left: 10px
+      padding-right: 10px
+      padding-top: 30px
+      padding-bottom: 30px
+      height: 400px
+      .your-title
+        font-weight: lighter
+        font-family: Georgia
+        color: black
+      img
+        width: 300px
+        height: 160px
+      p
+        font-weight: lighter
+        font-family: Georgia
+        font-style: italic
+        color: #999999
+        margin-top: 30px
+      button
+        padding: 6px
+        border-radius: 7px
+        background: #3BAFBE
+        color: #FFFFFF
+        margin-top: 20px
+  .information-small-img
+    display: flex
+    flex-direction: rows
+    flex-wrap: wrap
+    justify-content: space-around
+    grid-area: information-small-img
+    border-top: 1px solid silver
+    h2
+      text-align: center
+      width: 77%
+      color: #666666
+      font-size: 30px
+      font-family: 'Open Sans'
+      font-weight: 400
+      src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff')
+    .title-6-images
+      flex-basis: 325px
+      height: 110px
+      margin-top: 20px
+      img
+        width: 80px
+        height: 80px
+        padding-right: 20px
+      h4
+        margin-left: 10px
+        color: #3BAFBE
+        padding-bottom: 5px
+        font-size: 15px
+      p
+        margin-left: 15px
+        font-size: 14px
+        color: #848C92
+        line-height: 18px
+  .footer-1
+    border-top: 1px solid silver
+    height: 250px
+    background: #252525
+    grid-area: footer-1
+    display: grid
+    grid-template-columns: repeat(4, minmax(200px, 1fr))
+    color: white
+    .inner_columns_menu
+      padding-top: 10px
+      p
+        font-size: 27px
+        padding-left: 50px
+        padding-bottom: 20px
+      li
+        font-size: 13px
+        color: #999999
+        padding-left: 50px
+        padding-top: 10px
+        .read_more
+          margin-left: 180px
+      input
+        width: 200px
+        height: 30px
+        background-color: #2C2C2C
+        color: #999
+        font-size: 15px
+        border: none
+        border-radius: 5px
+        margin-bottom: 10px
+        margin-left: 25px
+      button
+        padding-left: 10px
+        padding-right: 10px
+        height: 32px
+        border-radius: 5px
+        font-size: 14px
+        background: #3BAFBE
+        color: #FFFFFF
+        margin-left: 25px
+
+  .footer-2
+    background: #1A1A1A
+    grid-area: footer-2
+    color: #999999
+    text-alighn: center
+    display: flex
+    flex-direction: rows
+    justify-content: space-between
+    font-size: 20px
+    .footer_part_1
+      margin-left: 50px
+      padding-top: 20px
+      padding-bottom: 20px
+    .footer_part_2
+      margin-right: 50px
+      padding-top: 20px
+      padding-bottom: 20px
+
+  @media screen and (max-width: 900px)
+    .footer-1
+      height: 540px
+      grid-template-columns: repeat(2, minmax(200px, 1fr))
+
+
+@media screen and (max-width: 1050px)
+  .important-information
+    .inner_block_information_and_navigation:nth-child(2)
+      margin-left: 130px
+
+@media screen and (max-width: 720px)
+  .main-container-blocks
+    grid-template-rows: 350px 640px 1fr minmax(500px, 950px) 500px
+    min-width: 450px
+    .header
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      align-items: center
+      .logo
+        order: 1
+      .image_social
+        order: 2
+      .search_input
+        order: 3
+      .menu
+        order: 4
+  .information-big-img
+    margin-top: 60px
+    flex-direction: column
+    align-items: center
+    justify-content: space-evenly
+    img
+      margin-left: 200px
+    p
+      margin-left: 100px
+    .your-title
+      margin-left: 280px
+    button
+      margin-left: 100px
+  .information-small-img
+    flex-direction: column
+    height: 900px
+    h2
+      width: 90%
+      font-size: 25px !important
+      margin-left: 80px
+      height: 0
+      margin-bottom: 40px
+    .title-6-images
+      flex-basis: 35px
+      flex-basis: 0px !important
+      img
+        margin-left: 100px
+      p
+        font-size: 15px !important
+        width: 450px
+      h4
+        font-size: 25px !important
+
+
+
+
+
+
+
+
+
+
