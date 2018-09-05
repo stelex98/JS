@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reverse letters</title>
+</head>
+
+<body>
+    <input type="text" id="sentence">
+    <script>
+    sentence.addEventListener("change", function(){
+        let sentence = document.getElementById("sentence").value;
+        var result = sentence.split(" ").map(
+            function(a) { return a.split("").reverse().join("") }
+        ).join(" ");
+        console.log(result);
+    });
+    </script>
+</body>
+
+</html>

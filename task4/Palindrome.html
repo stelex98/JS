@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+    function palindrome(str) {
+        str = str.match(/[A-Za-z0-9]/gi).join("").toLowerCase();
+
+        for (var i = 0; i < Math.floor(str.length / 2); i++) {
+            if (str.charAt(i) !== str.charAt(str.length - i - 1)) {
+                return "Try again.";
+            }
+        }
+        return "Palindrome!";
+    }
+    console.log(palindrome("Red rum, sir, is murder"));
+    console.log(palindrome("Hello world"));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reverse array</title>
+</head>
+
+<body>
+    Array:
+    <input type="text" id="array">
+    <script>
+        function reverseArray(arr){
+            for(let i = arr.length - 1 ; i >= 0; i--) console.log((arr[i]));
+        }
+
+    let my_array = document.querySelector("#array");
+    array.addEventListener("change", function() {
+        let arr = my_array.value.split(" ").join('');
+        reverseArray(arr);
+    });
+    </script>
+</body>
+
+</html>

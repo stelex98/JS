@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Shift letters</title>
+</head>
+
+<body>
+    <input id="string" type="text">
+    <input id="shift" type="text">
+
+    <script>
+    var check_symbol = function(check){
+        return /^[A-Z]$/i.test(check);
+    }
+
+    function sumOfTwo (str, count) {
+        let arr = str.split("");
+        for (i in str) {
+            if (check_symbol(arr[i])) {
+                while (str.charCodeAt(i) <= 90 && str.charCodeAt(i) + count > 90){
+                    count = count -26;
+                }
+                while (str.charCodeAt(i) <= 122 && str.charCodeAt(i) + count > 122){
+                    count = count - 26;
+                }
+                arr[i] = String.fromCharCode(str.charCodeAt(i) + count);
+            }
+        }
+         console.log(arr);
+    }
+    let el = document.querySelector("#shift");
+    el.addEventListener("change", function() {
+        let str = document.querySelector("#string").value;
+        let shift = parseInt(el.value);
+        sumOfTwo(str, shift);
+    });
+    </script>
+</body>
+
+</html>

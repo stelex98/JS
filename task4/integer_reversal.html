@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Integer reversal</title>
+</head>
+
+<body>
+    <input type="text" id="reverse_input">
+    <script>
+    function checkNumber(number) {
+        if (/[a-zа-яё]/i.test(number)) {
+            console.log("вводи число"); // не число
+            return false;
+        } else {
+            return number;
+        }
+    }
+
+    function reverseNumber(number) {
+        if (number[0] == '-') {
+            number = number.slice(1).split("").reverse().join("");
+            console.log('-' + parseInt(number)); // число
+        } else {
+            number = number.split("").reverse().join("");
+            console.log(parseInt(number)); // число
+        }
+    }
+
+    reverse_input.addEventListener("change", function() {
+        let sentence = document.getElementById("reverse_input").value;
+        let number = checkNumber(sentence);
+        if(number) reverseNumber(number);
+    });
+    </script>
+</body>
+
+</html>

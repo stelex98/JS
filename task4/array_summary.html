@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Array summary</title>
+</head>
+
+<body>
+    <input type="text" id="my_input">
+    <script>
+    function checkMinMax(arr) {
+
+        let main_object = { // обеъект макс/мин/сумма/среднее
+            max: parseInt(arr[0]),
+            min: parseInt(arr[0]),
+            sum: 0,
+            avg: 0
+        };
+
+        for (i in arr) {
+            if (parseInt(arr[i]) > main_object.max) { // макс значение
+                main_object.max = parseInt(arr[i]);
+            }
+            if (parseInt(arr[i]) < main_object.min) { // мин значение
+                main_object.min = parseInt(arr[i]);
+            }
+
+            main_object.sum = parseInt(main_object.sum) + parseInt(arr[i]); // сумма
+        }
+        main_object.avg = parseInt(main_object.sum) / arr.length; // ср значение
+        return main_object;
+    }
+
+    my_input.addEventListener("change", function() {
+        let my_array = my_input.value.split(" ");
+        console.log(checkMinMax(my_array));
+    });
+    </script>
+</body>
+
+</html>

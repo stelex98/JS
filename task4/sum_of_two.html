@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sum of two</title>
+</head>
+
+<body>
+    Array:
+    <input type="text" id="array">
+    <input type="text" id="sum">
+    <script>
+    function sumOfTwo(arr, sum) {
+        arr = arr.map(function(item){return +item;});
+
+        for (let i = 0; i < arr.length; i++) {
+            for (j = i + 1; j < arr.length; j++) {
+                if (arr[i] + arr[j] == sum) {
+                    console.log('Ваша комбинация: ', arr[i], arr[j]);
+                }
+            }
+        }
+    }
+
+    let my_array = document.querySelector("#array");
+    let my_sum = document.querySelector("#sum");
+    sum.addEventListener("change", function() {
+        let arr = my_array.value.split("");
+        let sum = parseInt(my_sum.value);
+        sumOfTwo(arr, sum);
+    });
+    </script>
+</body>
+
+</html>
