@@ -12,9 +12,9 @@
 
     <script>
     function findIndexOfClosingBracket(string, index) {
+        let counter = 0;
         if (string[index] != '(') return -1;
-        else {
-            for (let counter = 0; index < string.length; index++) {
+            for (counter; index < string.length; index++) {
                 if (string.charAt(index) == '('){
                     counter++;
                 }
@@ -25,7 +25,6 @@
                     return index
                 }
             }
-        }
     }
 
     let my_string = document.querySelector("#string");

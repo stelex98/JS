@@ -12,8 +12,8 @@
     sentence.addEventListener("change", function(){
         let sentence = document.getElementById("sentence").value;
         var result = sentence.split(" ").map(
-            function(a) { return a.split("").reverse().join("") }
-        ).join(" ");
+            a => { return a.split("").reverse().join("")
+        }).join(" ");
         console.log(result);
     });
     </script>

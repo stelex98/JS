@@ -23,16 +23,15 @@
 
         let max_length = object_letters[arr[0]];
 
-        for (i in object_letters){
-            if (object_letters[i] > max_length ) {
+        for (i in object_letters) {
+            if (object_letters[i] > max_length) {
                 max_length = object_letters[i]
             }
-            console.log(max_length);
         }
 
-        for ( i in object_letters){
-            if (max_length == object_letters[i]){
-                console.log(i);
+        for (i in object_letters) {
+            if (max_length == object_letters[i]) {
+                console.log(i, max_length);
             }
         }
     }

@@ -28,12 +28,13 @@
 
             main_object.sum = parseInt(main_object.sum) + parseInt(arr[i]); // сумма
         }
+
         main_object.avg = parseInt(main_object.sum) / arr.length; // ср значение
         return main_object;
     }
 
     my_input.addEventListener("change", function() {
-        let my_array = my_input.value.split(" ");
+        let my_array = my_input.value.split("");
         console.log(checkMinMax(my_array));
     });
     </script>
