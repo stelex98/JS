@@ -1,54 +1,63 @@
 * {
   box-sizing: border-box; }
 
-ul {
-  margin: 0;
-  padding: 0; }
-  ul .checked {
-    background: #888;
-    color: #fff;
-    text-decoration: line-through; }
-    ul .checked:before {
-      content: '';
-      position: absolute;
-      border-color: #fff;
-      border-style: solid;
-      border-width: 0 2px 2px 0;
-      top: 10px;
-      left: 16px;
-      transform: rotate(45deg);
-      height: 15px;
-      width: 7px; }
-  ul li {
-    cursor: pointer;
-    position: relative;
-    padding: 12px 8px 12px 40px;
-    background: #eee;
-    font-size: 1.2em;
-    transition: 0.2s;
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; }
-    ul li:hover {
-      background: #ddd; }
-    ul li .close {
-      position: absolute;
-      right: 0;
-      top: 0;
-      padding: 12px 16px 12px 16px; }
-      ul li .close:hover {
-        background-color: #f44336;
-        color: white; }
-    ul li .edit {
-      position: absolute;
-      right: 30px;
-      top: 0;
-      padding: 12px 16px 12px 16px; }
-      ul li .edit:hover {
-        background-color: #f44336;
-        color: white; }
+.scroll {
+  width: auto;
+  height: 200px;
+  overflow: scroll;
+  background: #E0FFFF; }
+  .scroll ul {
+    margin: 0;
+    padding: 0;
+    text-overflow: ellipsis; }
+    .scroll ul #my_li {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .scroll ul .checked {
+      background: #888;
+      color: #000000;
+      text-decoration: line-through;
+      text-overflow: ellipsis; }
+      .scroll ul .checked:before {
+        content: '';
+        position: absolute;
+        border-color: #fff;
+        border-style: solid;
+        border-width: 0 2px 2px 0;
+        top: 10px;
+        left: 16px;
+        transform: rotate(45deg);
+        height: 15px;
+        width: 7px; }
+    .scroll ul li {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      background: #eee;
+      font-size: 1.2em;
+      transition: 0.2s;
+      /* make the list items unselectable */ }
+      .scroll ul li:hover {
+        background: #ddd; }
+      .scroll ul li .close {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 12px 16px 12px 16px;
+        background-color: #DEF1E5; }
+        .scroll ul li .close:hover {
+          background-color: #f44336;
+          color: white; }
+      .scroll ul li .edit {
+        position: absolute;
+        right: 40px;
+        top: 0;
+        padding: 12px 16px 12px 16px;
+        background-color: #DEF1E5; }
+        .scroll ul li .edit:hover {
+          background-color: #f44336;
+          color: white; }
 
 .header {
   background-color: #66D9EF;
@@ -66,17 +75,70 @@ ul {
     width: 75%;
     padding: 10px;
     float: left;
-    font-size: 1.2em; }
-  .header .addBTN {
-    padding: 10px;
-    width: 25%;
+    font-size: 1.4em; }
+  .header #span_add,
+  .header #clear_all {
+    padding: 14px;
+    width: 13%;
     background: #d9d9d9;
+    height: 50px;
     color: #555;
-    float: left;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.0em;
     cursor: pointer;
     transition: 0.3s;
-    border-radius: 0; }
-    .header .addBTN:hover {
+    border: none; }
+    .header #span_add:hover,
+    .header #clear_all:hover {
       background-color: #bbb; }
+
+#form_edit {
+  display: none;
+  border: solid 1px;
+  border-radius: 10px;
+  width: 35%;
+  height: 300px;
+  margin: -20% 0 0 40%;
+  position: absolute;
+  background: #DCDCDC; }
+  #form_edit #information_task {
+    border-radius: 4px;
+    resize: none;
+    margin: 10% 0 0 5%;
+    width: 90%;
+    height: auto; }
+  #form_edit #save_button,
+  #form_edit #cancel_button {
+    width: 80px;
+    height: 30px;
+    border-radius: 5px; }
+  #form_edit #save_button {
+    margin: 3% 0 0 5%; }
+
+#mask {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 100%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: none; }
+
+@media screen and (max-width: 896px) {
+  #span_add,
+  #clear_all {
+    padding: 14px;
+    margin-top: 20px;
+    width: 13%;
+    background: #d9d9d9;
+    height: 50px;
+    color: #555;
+    text-align: center;
+    font-size: 1.4em;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    vertical-align: top; }
+    #span_add:hover,
+    #clear_all:hover {
+      background-color: #bbb; } }
