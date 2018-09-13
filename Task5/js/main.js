@@ -101,5 +101,4 @@ function newElement() {
             console.log(div);
         }
     }
-    counter ++;
 }
