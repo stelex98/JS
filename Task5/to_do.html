@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do list</title>
     <link rel="stylesheet" href="css/main_style.css">
 </head>
@@ -12,7 +13,7 @@
     <div id="main_target" class="header">
         <h2>To do List</h2>
         <input type="text" id="main_input" placeholder="Напишите ваше задание...">
-        <span id="span_add">Добавить</span>
+        <button id="span_add">Добавить</button>
         <button id="clear_all">Удалить все</button>
     </div>
     <div class="scroll">
@@ -21,10 +22,14 @@
     </div>
     <div id="form_edit">
         <textarea name="" id="information_task" cols="30" rows="10"></textarea>
-        <button id="save_button" onclick="">Сохранить</button>
-        <button id="cancel_button" onclick="">Отменить</button>
+        <button id="save_button">Сохранить</button>
+        <button id="cancel_button">Отменить</button>
+    </div>
+    <div id="form_ask">
+        <H4>Вы уверены, что хотите удалить все записи?</H4>
+        <button id="yes_button">Да</button>
+        <button id="no_button">Нет</button>
     </div>
 </body>
 <script type="text/javascript" src="js/main.js"></script>
-
 </html>
