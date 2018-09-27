@@ -1,0 +1,129 @@
+* {
+  padding: 0;
+  margin: 0; }
+
+.main-background {
+  width: 55%;
+  height: 650px;
+  background: #1266A0;
+  margin: auto; }
+  .main-background .status-music {
+    height: 50px;
+    width: 100%; }
+    .main-background .status-music p {
+      color: #E5E9DF;
+      font-size: 0.9em; }
+    .main-background .status-music p:nth-child(1) {
+      float: left;
+      margin: 10px 0 0 10%; }
+    .main-background .status-music p:nth-child(2) {
+      float: right;
+      margin: 10px 12% 0 0; }
+  .main-background .audio-player {
+    width: auto;
+    height: 21px;
+    margin: 0 10px 40px 50px; }
+    .main-background .audio-player .repeatMusic,
+    .main-background .audio-player .playMusic {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: none;
+      border: none; }
+      .main-background .audio-player .repeatMusic .icon-repeat,
+      .main-background .audio-player .repeatMusic .icon-play,
+      .main-background .audio-player .playMusic .icon-repeat,
+      .main-background .audio-player .playMusic .icon-play {
+        background: none;
+        border: none; }
+        .main-background .audio-player .repeatMusic .icon-repeat img,
+        .main-background .audio-player .repeatMusic .icon-play img,
+        .main-background .audio-player .playMusic .icon-repeat img,
+        .main-background .audio-player .playMusic .icon-play img {
+          width: 100%;
+          height: 100%; }
+      .main-background .audio-player .repeatMusic .pauseMusic,
+      .main-background .audio-player .playMusic .pauseMusic {
+        display: none;
+        background: none;
+        border: none; }
+        .main-background .audio-player .repeatMusic .pauseMusic img,
+        .main-background .audio-player .playMusic .pauseMusic img {
+          width: 100%;
+          height: 100%; }
+    .main-background .audio-player .slider {
+      width: 50%;
+      height: 20px;
+      display: inline-block; }
+      .main-background .audio-player .slider input[type='range'] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 4px;
+        margin-top: 10px;
+        position: relative;
+        top: -7px;
+        background-color: black;
+        border-radius: 3px; }
+      .main-background .audio-player .slider input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid #000000;
+        height: 10px;
+        width: 5px;
+        border-radius: 30%;
+        background: #000000;
+        cursor: pointer; }
+    .main-background .audio-player .time-music {
+      width: 65px;
+      height: 18px;
+      display: inline-block; }
+      .main-background .audio-player .time-music .time-now-music {
+        float: left; }
+        .main-background .audio-player .time-music .time-now-music p {
+          font-size: 0.8em; }
+      .main-background .audio-player .time-music .all-time-music {
+        float: right; }
+        .main-background .audio-player .time-music .all-time-music p {
+          font-size: 0.8em; }
+    .main-background .audio-player .icon-speaker {
+      height: auto;
+      width: 6%;
+      display: inline-block; }
+      .main-background .audio-player .icon-speaker img {
+        width: 50%;
+        height: 50%;
+        margin: 0 0 4px 10px; }
+    .main-background .audio-player .change-level-music {
+      width: 10%;
+      height: 2px;
+      display: inline-block; }
+      .main-background .audio-player .change-level-music input[type='range'] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 4px;
+        margin-top: 10px;
+        position: relative;
+        top: -10px;
+        background-color: black;
+        border-radius: 3px; }
+      .main-background .audio-player .change-level-music input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        border: 1px solid #000000;
+        height: 10px;
+        width: 5px;
+        border-radius: 30%;
+        background: #000000;
+        cursor: pointer; }
+  .main-background .playlist {
+    width: 78%;
+    height: 30px;
+    margin: 10px 0 0 70px; }
+    .main-background .playlist p:nth-child(1) {
+      padding: 0 0 0 10px;
+      color: #ffffff;
+      float: left; }
+    .main-background .playlist p:nth-child(2) {
+      padding: 0 10px 0 0;
+      color: #ffffff;
+      float: right; }
+    .main-background .playlist:hover {
+      background-color: #0F598C; }
