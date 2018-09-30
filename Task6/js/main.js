@@ -90,7 +90,6 @@ let calculatingSlider = (lengthMusic) => {
             setTimeout(finishTimeMusic, 0);
             clearTimeout(rec);
         } else {
-            console.log(slideR[0].childNodes[1].valueAsNumber);
             slideR[0].childNodes[1].valueAsNumber = slideR[0].childNodes[1].valueAsNumber + 1;
             sliderValueNow = slideR[0].childNodes[1].valueAsNumber;
             rec = setTimeout(recINC, 1000);
