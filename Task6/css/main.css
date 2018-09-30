@@ -2,16 +2,18 @@
   padding: 0;
   margin: 0; }
 
+body {
+  background-color: #1266a0; }
+
 .main-background {
   width: 55%;
   height: 650px;
-  background: #1266A0;
   margin: auto; }
   .main-background .status-music {
     height: 50px;
     width: 100%; }
     .main-background .status-music p {
-      color: #E5E9DF;
+      color: #e5e9df;
       font-size: 0.9em; }
     .main-background .status-music p:nth-child(1) {
       float: left;
@@ -30,22 +32,14 @@
       border-radius: 50%;
       background: none;
       border: none; }
-      .main-background .audio-player .repeatMusic .icon-repeat,
-      .main-background .audio-player .repeatMusic .icon-play,
-      .main-background .audio-player .playMusic .icon-repeat,
-      .main-background .audio-player .playMusic .icon-play {
-        background: none;
-        border: none; }
-        .main-background .audio-player .repeatMusic .icon-repeat img,
-        .main-background .audio-player .repeatMusic .icon-play img,
-        .main-background .audio-player .playMusic .icon-repeat img,
-        .main-background .audio-player .playMusic .icon-play img {
-          width: 100%;
-          height: 100%; }
+      .main-background .audio-player .repeatMusic img,
+      .main-background .audio-player .playMusic img {
+        width: 100%;
+        height: 100%; }
       .main-background .audio-player .repeatMusic .pauseMusic,
       .main-background .audio-player .playMusic .pauseMusic {
         display: none;
-        background: none;
+        background-color: none;
         border: none; }
         .main-background .audio-player .repeatMusic .pauseMusic img,
         .main-background .audio-player .playMusic .pauseMusic img {
@@ -62,7 +56,7 @@
         margin-top: 10px;
         position: relative;
         top: -7px;
-        background-color: black;
+        background-color: #000000;
         border-radius: 3px; }
       .main-background .audio-player .slider input[type=range]::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -70,7 +64,7 @@
         height: 10px;
         width: 5px;
         border-radius: 30%;
-        background: #000000;
+        background-color: #000000;
         cursor: pointer; }
     .main-background .audio-player .time-music {
       width: 65px;
@@ -103,7 +97,7 @@
         margin-top: 10px;
         position: relative;
         top: -10px;
-        background-color: black;
+        background-color: #000000;
         border-radius: 3px; }
       .main-background .audio-player .change-level-music input[type=range]::-webkit-slider-thumb {
         -webkit-appearance: none;
@@ -111,7 +105,7 @@
         height: 10px;
         width: 5px;
         border-radius: 30%;
-        background: #000000;
+        background-color: #000000;
         cursor: pointer; }
   .main-background .playlist {
     width: 78%;
@@ -126,4 +120,4 @@
       color: #ffffff;
       float: right; }
     .main-background .playlist:hover {
-      background-color: #0F598C; }
+      background-color: #0f598c; }

@@ -10,19 +10,40 @@ let repeatMusic = document.getElementsByClassName('repeatMusic');
 let allTimeMusic = document.getElementsByClassName('all-time-music')
 let timeNowMusic = document.getElementsByClassName('time-now-music')
 let slideR = document.getElementsByClassName('slider');
+
 let sliderValueNow = 0;
 let arrayDivClick = [];
+let finishMusic = 0;
 let audio = new Audio();
-audio.volume = 0.1;
+
+let lengthSlideronPage = slideR.length;
+let repeatMusicLengthOnPage = repeatMusic.length;
+let playMusicButtonOnPage = playMusicButton.length;
+let clickOnPlayListOnPage = clickOnPlayList.length;
+let changeLevelMusicOnPage = changeLevelMusic.length;
+
+let currentValueSlider;
+let maxValueSlider;
+
+let minutes;
+let seconds;
+let minutesNow;
+let secondsNow;
 
 let rec;
 let ini = 0;
+let i;
+
+let thisNameofMusic;
+let myMusic;
+let myMusicInic;
 
 slideR[0].childNodes[1].valueAsNumber = 0;
-audio.src = '1.mp3';
+audio.src = 'audio/music 1.mp3';
+audio.volume = 0.1;
 
 let music = {
-    name: '1',
+    name: 'music 1',
     minutes: '00',
     seconds: '47',
     duratioN: '',
@@ -47,59 +68,59 @@ let changeIconPause = () => {
     statusOfMusicName[0].children[0].innerHTML = 'Playing...';
 }
 
-let crutch = () => { // тут костыль, Леша прости, устал искать решение...
-    timeNowMusic[0].childNodes[1].innerHTML = music.minutes + ':' + music.seconds;
+let finishTimeMusic = () => {
+    timeNowMusic[0].childNodes[1].innerHTML = `${music.minutes}:${music.seconds}`;
     changeIconPlay();
 }
 
 let calculatingSlider = (lengthMusic) => {
-    slideR[0].childNodes[1].max = Math.round(lengthMusic) + 2;
+    slideR[0].childNodes[1].max = Math.round(lengthMusic) + 1; // учет погрешности в 1 секунду
     clearTimeout(rec);
     changeIconPause();
     audio.play();
     rec = setTimeout(function recINC() {
-        if (slideR[0].childNodes[1].valueAsNumber >= parseInt(slideR[0].childNodes[1].max)) {
+        music.minutesOfMusicNow = parseInt(audio.currentTime / 60, 10);
+        music.secondsOfMusicNow = parseInt(audio.currentTime % 60);
+
+        currentValueSlider = slideR[0].childNodes[1].valueAsNumber;
+        maxValueSlider = parseInt(slideR[0].childNodes[1].max);
+        if (currentValueSlider >= maxValueSlider) {
             sliderValueNow = 0;
             music.secondsOfMusicNow = parseInt(music.secondsOfMusicNow) + 1;
-            music.minutesOfMusicNow = parseInt(audio.currentTime / 60, 10);
-            music.secondsOfMusicNow = parseInt(audio.currentTime % 60);
-            correctFormatTimeOfMisicNow();
-            timeNowMusic[0].childNodes[1].innerHTML = music.minutesOfMusicNow + ':' + music.secondsOfMusicNow;
-            setTimeout(crutch, 1000);
+            setTimeout(finishTimeMusic, 0);
             clearTimeout(rec);
         } else {
+            console.log(slideR[0].childNodes[1].valueAsNumber);
             slideR[0].childNodes[1].valueAsNumber = slideR[0].childNodes[1].valueAsNumber + 1;
             sliderValueNow = slideR[0].childNodes[1].valueAsNumber;
-            music.minutesOfMusicNow = parseInt(audio.currentTime / 60, 10);
-            music.secondsOfMusicNow = parseInt(audio.currentTime % 60);
-            correctFormatTimeOfMisicNow();
-            timeNowMusic[0].childNodes[1].innerHTML = music.minutesOfMusicNow + ':' + music.secondsOfMusicNow;
             rec = setTimeout(recINC, 1000);
         }
+        correctFormatTimeOfMisicNow();
+        timeNowMusic[0].childNodes[1].innerHTML = `${music.minutesOfMusicNow}:${music.secondsOfMusicNow}`;
     }, 0);
 }
 
 let correctFormatTimeOfMisicNow = () => {
-    let minutesNow = String(music.minutesOfMusicNow).split('');
-    let secondsNow = String(music.secondsOfMusicNow).split('');
+    minutesNow = String(music.minutesOfMusicNow).split('');
+    secondsNow = String(music.secondsOfMusicNow).split('');
 
     if (minutesNow.length <= 1) {
-        music.minutesOfMusicNow = '0' + music.minutesOfMusicNow;
+        music.minutesOfMusicNow = `0${music.minutesOfMusicNow}`;
     }
     if (secondsNow.length <= 1 || secondsNow[0] == '0') {
-        music.secondsOfMusicNow = '0' + music.secondsOfMusicNow;
+        music.secondsOfMusicNow = `0${music.secondsOfMusicNow}`;
     }
 }
 
 let correctFormatTimeOfMisic = () => {
-    let minutes = String(music.minutes).split('');
-    let seconds = String(music.seconds).split('');
+    minutes = String(music.minutes).split('');
+    seconds = String(music.seconds).split('');
 
     if (minutes.length <= 1) {
-        music.minutes = '0' + minutes;
+        music.minutes = `0${minutes}`;
     }
     if (seconds.length <= 1 || seconds[0] == '0') {
-        music.seconds = '0' + music.seconds;
+        music.seconds = `0${music.seconds}`;
     }
 }
 
@@ -111,16 +132,15 @@ let musicInicialization = (name) => {
         music.seconds = parseInt(audio.duration % 60);
     });
 
-    let nameOfMusic = name + '.mp3';
+    let nameOfMusic = `audio/${name}.mp3`;
     audio.src = nameOfMusic;
     return audio;
 }
 
 let startAndStopMusic = () => {
-    allTimeMusic[0].childNodes[1].innerHTML = music.minutes + ':' + music.seconds;
-    let a = 1;
+    allTimeMusic[0].childNodes[1].innerHTML = `${music.minutes}:${music.seconds}`;
 
-    if (checkPlayOrPause == 0) {
+    if (!checkPlayOrPause) {
         calculatingSlider(audio.duration);
         changeIconPause();
         slideR[0].childNodes[1].valueAsNumber = sliderValueNow;
@@ -140,7 +160,7 @@ let playClick = (myMusic) => {
     });
     setTimeout(function() {
         correctFormatTimeOfMisic();
-        allTimeMusic[0].childNodes[1].innerHTML = music.minutes + ':' + music.seconds;
+        allTimeMusic[0].childNodes[1].innerHTML = `${music.minutes}:${music.seconds}`;
         myMusic.play();
         iconPlayMisic[0].style.display = 'none';
         iconPauseMusic[0].style.display = 'block';
@@ -150,49 +170,58 @@ let playClick = (myMusic) => {
 
 let replayMusic = () => {
     clearTimeout(rec);
-    slideR[0].childNodes[1].valueAsNumber = 0;
     calculatingSlider(audio.duration);
-    let thisNameofMusic = statusOfMusicName[0].children[1].innerHTML;
+    thisNameofMusic = statusOfMusicName[0].children[1].innerHTML;
     statusOfMusicName[0].children[0].innerHTML = 'Playing...';
-    let myMusic = musicInicialization(thisNameofMusic);
+    myMusic = musicInicialization(thisNameofMusic);
     playClick(myMusic);
+    slideR[0].childNodes[1].valueAsNumber = 0;
 }
 
-for (var i = 0; i < changeLevelMusic.length; i++) { // change level music
+for ( i = 0; i < changeLevelMusicOnPage; i++) { // change level music
     changeLevelMusic[i].addEventListener('input', function() {
         audio.volume = changeLevelMusic[0].childNodes[1].value;
         music.volume = audio.volume;
     });
 }
 
-for (var i = 0; i < clickOnPlayList.length; i++) {
+for ( i = 0; i < clickOnPlayListOnPage; i++) {
     clickOnPlayList[i].addEventListener('click', function(event) {
         clickOnPlayList[0].style.backgroundColor = '';
         event.target.style.backgroundColor = '#0F598C';
         arrayDivClick.push(event.target);
-        for (var i = 0; i < arrayDivClick.length - 1; i++) {
+        for ( i = 0; i < arrayDivClick.length - 1; i++) {
             if (event.target != arrayDivClick[i]) {
                 arrayDivClick[i].style.backgroundColor = '';
             }
         }
         statusOfMusicName[0].children[1].innerHTML = event.target.childNodes[1].innerHTML;
         slideR[0].childNodes[1].valueAsNumber = 0;
-        let myMusic = musicInicialization(statusOfMusicName[0].children[1].innerHTML);
+        myMusicInic = musicInicialization(statusOfMusicName[0].children[1].innerHTML);
         changeIconPause();
-        playClick(myMusic);
+        playClick(myMusicInic);
     });
 }
 
-for (var i = 0; i < playMusicButton.length; i++) { // play/pause
+
+for ( i = 0; i < playMusicButtonOnPage; i++) { // play/pause
     playMusicButton[i].addEventListener('click', startAndStopMusic, false);
 }
 
-for (var i = 0; i < repeatMusic.length; i++) { //repeat
+for ( i = 0; i < repeatMusicLengthOnPage; i++) { //repeat
     repeatMusic[i].addEventListener('click', replayMusic, false);
 }
 
-for (var i = 0; i < slideR.length; i++) {
+for ( i = 0; i < lengthSlideronPage; i++) {
     slideR[i].addEventListener('input', function() {
+        currentValueSlider = slideR[0].childNodes[1].valueAsNumber;
+        if ((currentValueSlider - 1 >= parseInt(audio.duration)) || (currentValueSlider - 4 >= parseInt(audio.duration))) { // проверка на граничные значения мелодии с учетом погрешности
+            clearTimeout(rec);
+            timeNowMusic[0].childNodes[1].innerHTML = `${music.minutes}:${music.seconds}`;
+            changeIconPlay();
+            audio.pause();
+            return 0;
+        }
         audio.currentTime = slideR[0].childNodes[1].valueAsNumber;
         calculatingSlider(audio.duration);
     }, false);
