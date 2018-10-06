@@ -1,0 +1,31 @@
+.main-block {
+    max-width: 1000px;
+    min-width: 620px;
+    height: auto;
+    display: flex;
+    flex-direction: rows;
+    flex-basis: 30px;
+    justify-content: space-around;
+    margin-left: 25%;
+    flex-wrap: wrap;
+
+    canvas {
+        border: 1px solid black;
+    }
+
+    .button-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        flex-basis: 15%;
+
+        .add-figure,
+        .delete-figure,
+        .clear-all {
+            background-color: rgb(64, 199, 129);
+            height: 40px;
+            width: 120px;
+            margin-left: 5%;
+        }
+    }
+}
