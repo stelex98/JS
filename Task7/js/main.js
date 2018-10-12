@@ -201,10 +201,12 @@ function dragTLCalc(previousSelectedRectangle) {
     if (previousSelectedRectangle.width < widthError) {
         stopDragging();
         previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
+        alert('Слишком маленькая ширина');
     } else
     if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height += (widthHeight - previousSelectedRectangle.height) + increaseHeight;
+        alert('Слишком маленькая высота');
     } else {
         previousSelectedRectangle.width += previousSelectedRectangle.x - x;
         previousSelectedRectangle.height += previousSelectedRectangle.y - y;
@@ -217,10 +219,12 @@ function dragTRCalc(previousSelectedRectangle) {
     if (previousSelectedRectangle.width < widthError) {
         stopDragging();
         previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
+        alert('Слишком маленькая ширина');
     } else
     if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height += (widthHeight - previousSelectedRectangle.height) + increaseHeight;
+        alert('Слишком маленькая высота');
     } else {
         previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
         previousSelectedRectangle.height += previousSelectedRectangle.y - y;
@@ -232,10 +236,12 @@ function dragBLCalc(previousSelectedRectangle) {
     if (previousSelectedRectangle.width < widthError) {
         stopDragging();
         previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
+        alert('Слишком маленькая ширина');
     } else
     if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.height) + increaseHeight;
+        alert('Слишком маленькая высота');
     } else {
         previousSelectedRectangle.width += previousSelectedRectangle.x - x;
         previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.y - y);
@@ -247,10 +253,12 @@ function dragBRCalc(previousSelectedRectangle) {
     if (previousSelectedRectangle.width < widthError) {
         stopDragging();
         previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
+        alert('Слишком маленькая ширина');
     } else
     if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.height) + increaseHeight;
+        alert('Слишком маленькая высота');
     } else {
         previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
         previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.y - y);
