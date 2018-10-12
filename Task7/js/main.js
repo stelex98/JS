@@ -23,15 +23,19 @@ let checkBottomLeftAngleTwo = false;
 let checkRightLeftAngleOne = false;
 let checkRightLeftAngleTwo = false;
 
-
 let addButton = addRectangleButton.length;
 let clearButton = clearAllButton.length;
 let deleteButton = deleteThisFigureButton.length;
 
+let widthError = 22;
+let widthHeight = 20;
+let increaseWidth = 5;
+let increaseHeight = 5;
+
 myCanvas.onmousedown = canvasClick;
 myCanvas.onmouseup = stopDragging;
-myCanvas.onmouseout = stopDragging;
-myCanvas.onmousemove = dragRectangle;
+
+document.addEventListener('mousemove', dragRectangle);
 
 let previousSelectedRectangle;
 let thisCLickRectangle = [];
@@ -57,7 +61,7 @@ function drawHandles(x, y, widthR, heightR) {
 }
 
 function dataRectangle(x, y, widthR, heightR) {
-    context.globalAlpha = 0.85;
+    context.globalAlpha = 0.85; // 0.85 прозрачность фигуры
     context.beginPath();
     context.fillRect(x, y, widthR, heightR);
 }
@@ -79,7 +83,6 @@ let drawRectangles = () => {
             drawHandles(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         }
         context.fill();
-        context.stroke();
     }
 
 }
@@ -142,7 +145,7 @@ function checkCloseEnough(p1, p2) {
 }
 
 function drawCircle(x, y, radius) {
-    context.fillStyle = "#FF0000";
+    context.fillStyle = "#ff0000";
     context.beginPath();
     context.arc(x, y, radius, 0, 2 * Math.PI);
     context.fill();
@@ -190,32 +193,69 @@ function dragRectangle(e) {
 }
 
 function dragAndDrop() {
-    previousSelectedRectangle.x = x - previousSelectedRectangle.width / 2;
-    previousSelectedRectangle.y = y - previousSelectedRectangle.height / 2;
+    previousSelectedRectangle.x = x - previousSelectedRectangle.width / 2; // 2 - половина ширины фигуры
+    previousSelectedRectangle.y = y - previousSelectedRectangle.height / 2; // 2 - половина высоты фигуры
 }
 
 function dragTLCalc(previousSelectedRectangle) {
-    previousSelectedRectangle.width += previousSelectedRectangle.x - x;
-    previousSelectedRectangle.height += previousSelectedRectangle.y - y;
+    if (previousSelectedRectangle.width < widthError) {
+        stopDragging();
+        previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
+    } else
+    if (previousSelectedRectangle.height < widthHeight) {
+        stopDragging();
+        previousSelectedRectangle.height += (widthHeight - previousSelectedRectangle.height) + increaseHeight;
+    } else {
+        previousSelectedRectangle.width += previousSelectedRectangle.x - x;
+        previousSelectedRectangle.height += previousSelectedRectangle.y - y;
+    }
     previousSelectedRectangle.x = x;
     previousSelectedRectangle.y = y;
 }
 
 function dragTRCalc(previousSelectedRectangle) {
-    previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
-    previousSelectedRectangle.height += previousSelectedRectangle.y - y;
+    if (previousSelectedRectangle.width < widthError) {
+        stopDragging();
+        previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
+    } else
+    if (previousSelectedRectangle.height < widthHeight) {
+        stopDragging();
+        previousSelectedRectangle.height += (widthHeight - previousSelectedRectangle.height) + increaseHeight;
+    } else {
+        previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
+        previousSelectedRectangle.height += previousSelectedRectangle.y - y;
+    }
     previousSelectedRectangle.y = y;
 }
 
 function dragBLCalc(previousSelectedRectangle) {
-    previousSelectedRectangle.width += previousSelectedRectangle.x - x;
-    previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.y - y);
+    if (previousSelectedRectangle.width < widthError) {
+        stopDragging();
+        previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
+    } else
+    if (previousSelectedRectangle.height < widthHeight) {
+        stopDragging();
+        previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.height) + increaseHeight;
+    } else {
+        previousSelectedRectangle.width += previousSelectedRectangle.x - x;
+        previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.y - y);
+    }
     previousSelectedRectangle.x = x;
 }
 
 function dragBRCalc(previousSelectedRectangle) {
-    previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
-    previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.y - y);
+    if (previousSelectedRectangle.width < widthError) {
+        stopDragging();
+        previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
+    } else
+    if (previousSelectedRectangle.height < widthHeight) {
+        stopDragging();
+        previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.height) + increaseHeight;
+    } else {
+        previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
+        previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.y - y);
+    }
+
 }
 
 let deleteThisRectangle = () => {
