@@ -242,8 +242,7 @@ function dragTLCalc(previousSelectedRectangle) {
         stopDragging();
         previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
         alert('Слишком маленькая ширина');
-    } else
-    if (previousSelectedRectangle.height < widthHeight) {
+    } else if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height += (widthHeight - previousSelectedRectangle.height) + increaseHeight;
         alert('Слишком маленькая высота');
@@ -260,8 +259,7 @@ function dragTRCalc(previousSelectedRectangle) {
         stopDragging();
         previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
         alert('Слишком маленькая ширина');
-    } else
-    if (previousSelectedRectangle.height < widthHeight) {
+    } else if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height += (widthHeight - previousSelectedRectangle.height) + increaseHeight;
         alert('Слишком маленькая высота');
@@ -277,8 +275,7 @@ function dragBLCalc(previousSelectedRectangle) {
         stopDragging();
         previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
         alert('Слишком маленькая ширина');
-    } else
-    if (previousSelectedRectangle.height < widthHeight) {
+    } else if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.height) + increaseHeight;
         alert('Слишком маленькая высота');
@@ -294,8 +291,7 @@ function dragBRCalc(previousSelectedRectangle) {
         stopDragging();
         previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
         alert('Слишком маленькая ширина');
-    } else
-    if (previousSelectedRectangle.height < widthHeight) {
+    } else if (previousSelectedRectangle.height < widthHeight) {
         stopDragging();
         previousSelectedRectangle.height = Math.abs(previousSelectedRectangle.height) + increaseHeight;
         alert('Слишком маленькая высота');
