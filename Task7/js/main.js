@@ -4,7 +4,7 @@ let addRectangleButton = document.getElementsByClassName('add-figure');
 let arrayOfRectangles = [];
 let clearAllButton = document.getElementsByClassName('clear-all');
 let deleteThisFigureButton = document.getElementsByClassName('delete-figure');
-let dragTL = dragBL = dragTR = dragBR = false;
+let dragTL = dragBL = dragTR = dragBR = dragBLC = dragBRC = false;
 let closeEnough = 7; // радиус углов треугольника
 let lengthOfRectangles = 0;
 let i = 0,
@@ -58,6 +58,9 @@ function drawHandles(x, y, widthR, heightR) {
     drawCircle(x + widthR, y, closeEnough);
     drawCircle(x + widthR, y + heightR, closeEnough);
     drawCircle(x, y + heightR, closeEnough);
+    drawCircle(x, y + heightR / 2, closeEnough);
+    drawCircle(x + widthR, y + heightR / 2, closeEnough);
+
 }
 
 function dataRectangle(x, y, widthR, heightR) {
@@ -137,7 +140,7 @@ function canvasClick(e) {
 
 function stopDragging() {
     isDragging = false;
-    dragTL = dragTR = dragBL = dragBR = false;
+    dragTL = dragTR = dragBL = dragBR = dragBLC = dragBRC = false;
 }
 
 function checkCloseEnough(p1, p2) {
@@ -165,13 +168,26 @@ function dragRectangle(e) {
         checkBottomLeftAngleTwo = checkCloseEnough(y, previousSelectedRectangle.y + previousSelectedRectangle.height);
         checkRightLeftAngleOne = checkCloseEnough(x, previousSelectedRectangle.x + previousSelectedRectangle.width);
         checkRightLeftAngleTwo = checkCloseEnough(y, previousSelectedRectangle.y + previousSelectedRectangle.height);
+        checkLeftCenterAngleOne = checkCloseEnough(x, previousSelectedRectangle.x);
+        checkLeftCenterAngleTwo = checkCloseEnough(y, previousSelectedRectangle.y + previousSelectedRectangle.height / 2);
 
+        checkRightCenterAngleOne = checkCloseEnough(x, previousSelectedRectangle.x + previousSelectedRectangle.width);
+        checkRightCenterAngleTwo = checkCloseEnough(y, previousSelectedRectangle.y + previousSelectedRectangle.height / 2);
+
+         (checkRightCenterAngleOne && checkRightCenterAngleTwo) ? dragBRC = true:
+        (checkLeftCenterAngleOne && checkLeftCenterAngleTwo) ? dragBLC = true: // левый центральный угол
         (checkLeftAngleOne && checkLeftAngleTwo) ? dragTL = true: //левый верхний угол
             (checkRightAngleOne && checkRightAngleTwo) ? dragTR = true : //правый верхний угол
             (checkBottomLeftAngleOne && checkBottomLeftAngleTwo) ? dragBL = true : //нижний левый угол
             (checkRightLeftAngleOne && checkRightLeftAngleTwo) ? dragBR = true : console.log('Тащи'); //нижний правый угол
 
-        if (dragTL) {
+        if(dragBRC){
+            dragBRCCalc(previousSelectedRectangle);
+            drawRectangles();
+        } else if (dragBLC) {
+            dragBLCCalc(previousSelectedRectangle);
+            drawRectangles();
+        } else if (dragTL) {
             dragTLCalc(previousSelectedRectangle);
             drawRectangles();
         } else if (dragTR) {
@@ -182,6 +198,9 @@ function dragRectangle(e) {
             drawRectangles();
         } else if (dragBR) {
             dragBRCalc(previousSelectedRectangle);
+            drawRectangles();
+        } else if (dragBLC) {
+            dragBLCCalc(previousSelectedRectangle);
             drawRectangles();
         } else {
             if (previousSelectedRectangle != null) {
@@ -195,6 +214,27 @@ function dragRectangle(e) {
 function dragAndDrop() {
     previousSelectedRectangle.x = x - previousSelectedRectangle.width / 2; // 2 - половина ширины фигуры
     previousSelectedRectangle.y = y - previousSelectedRectangle.height / 2; // 2 - половина высоты фигуры
+}
+
+function dragBLCCalc(previousSelectedRectangle) {
+    if (previousSelectedRectangle.width < widthError) {
+        stopDragging();
+        previousSelectedRectangle.width += (widthError - previousSelectedRectangle.width) + increaseWidth;
+        alert('Слишком маленькая ширина');
+    } else {
+        previousSelectedRectangle.width += previousSelectedRectangle.x - x;
+    }
+    previousSelectedRectangle.x = x;
+}
+
+function dragBRCCalc(previousSelectedRectangle) {
+    if (previousSelectedRectangle.width < widthError) {
+        stopDragging();
+        previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.width) + increaseWidth;
+        alert('Слишком маленькая ширина');
+    } else {
+        previousSelectedRectangle.width = Math.abs(previousSelectedRectangle.x - x);
+    }
 }
 
 function dragTLCalc(previousSelectedRectangle) {
@@ -273,7 +313,6 @@ let deleteThisRectangle = () => {
         if (arrayOfRectangles[i] == thisCLickRectangle[0]) {
             thisCLickRectangle = [];
             arrayOfRectangles[i] = '';
-            console.log(thisCLickRectangle);
             drawRectangles();
         }
     }

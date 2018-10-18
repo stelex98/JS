@@ -1,0 +1,24 @@
+.main-block {
+  max-width: 1000px;
+  min-width: 620px;
+  height: auto;
+  display: flex;
+  flex-direction: rows;
+  flex-basis: 30px;
+  justify-content: space-around;
+  margin-left: 25%;
+  flex-wrap: wrap; }
+  .main-block canvas {
+    border: 1px solid black; }
+  .main-block .button-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-basis: 15%; }
+    .main-block .button-item .add-figure,
+    .main-block .button-item .delete-figure,
+    .main-block .button-item .clear-all {
+      background-color: #40c781;
+      height: 40px;
+      width: 120px;
+      margin-left: 5%; }
