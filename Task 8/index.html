@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>File loader</title>
+    <link rel="stylesheet" href="scss/main.css">
+</head>
+
+<body>
+    <div class="show-image-onclick">
+
+    </div>
+    <div class="drop-area">
+        <form class="my-form">
+            <div class="content">
+                <p>Загрузите изображения с помощью диалога выбора файлов или перетащив нужные изображения в выделенную область</p>
+                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                <label class="button" for="fileElem">Выбрать изображения</label>
+            </div>
+        </form>
+        <progress id="progress-bar" max=100 value=0></progress>
+        <div class="my-images-item"></div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
