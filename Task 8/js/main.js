@@ -1,43 +1,43 @@
 let dropArea = document.getElementsByClassName('drop-area');
-let filesDone = 0;
-let filesToDo = 0;
 let progressBar = document.getElementById('progress-bar');
-let uploadProgress = [];
-let dataAboutFiles = [];
-let uniqueClassName = 0;
-let checkQuantityImages = 0;
 let divImages = document.getElementsByClassName('my-images-item');
-let uniqueClassNameString = 'gallery';
-let img = 'img';
-let formData = new FormData();
-let dataF;
-let files;
-let maxQuantityImages = true;
 let buttonSelectImages = document.getElementsByClassName('button')[0];
 let inputFile = document.getElementById('fileElem');
 let showImage = document.getElementsByClassName('show-image-onclick');
+
+let uploadProgress = [];
+let dataAboutFiles = [];
+let typeOfFile = ['image/jpeg', 'image/png'];
+
+let uniqueClassName = 0;
+let checkQuantityImages = 0;
+let filesToDo = 0;
+let filesDone = 0;
+
 let closeSpanEvent = "spanEvent";
 let spanClose = "spanElement";
+let uniqueClassNameString = 'gallery';
+let img = 'img';
+
+let maxQuantityImages = true;
+
+let formData = new FormData();
+
+let dataF;
+let files;
+
 let textInnerSpan = document.createTextNode("\u00D7");
-let typeOfFile = ['image/jpeg', 'image/png'];
+
 
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     dropArea[0].addEventListener(eventName, preventDefaults, false);
 });
 
-['dragenter', 'dragover'].forEach(eventName => {
-    dropArea[0].addEventListener(eventName, highlight, false);
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    dropArea[0].addEventListener(eventName, checkBacklight, false);
 });
 
-['dragleave', 'drop'].forEach(eventName => {
-    dropArea[0].addEventListener(eventName, unhighlight, false);
-});
-
-
-dropArea[0].addEventListener('click', ev => {
-    showImagesOnClick(ev);
-});
-
+dropArea[0].addEventListener('click', showImagesOnClick);
 dropArea[0].addEventListener('drop', handleDrop, false);
 
 function showImagesOnClick(ev) {
@@ -64,12 +64,12 @@ function preventDefaults(ev) {
     ev.stopPropagation();
 }
 
-function highlight(ev) {
-    dropArea[0].classList.add('highlight');
-}
-
-function unhighlight(ev) {
-    dropArea[0].classList.remove('highlight');
+function checkBacklight(ev){
+    if ((ev.type == 'dragenter') || (ev.type == 'dragover')) {
+        dropArea[0].classList.add('highlight');
+    } else if ((ev.type == 'dragleave') || (ev.type == 'drop')) {
+        dropArea[0].classList.remove('highlight');
+    }
 }
 
 function handleDrop(e) { // получаем данные о файле
@@ -91,13 +91,8 @@ function uploadFile(file) {
 }
 
 function checkQuantityimagesBtnDRG(checkQuantityImages) {
-    if (checkQuantityImages >= 12) { // максимальное кол-во изображений
-        maxQuantityImages = false;
-        return maxQuantityImages;
-    } else {
-        maxQuantityImages = true;
-        return maxQuantityImages;
-    }
+    maxQuantityImages = checkQuantityImages >= 12 ? false : true;
+    return maxQuantityImages;
 }
 
 function previewFile(file) {
@@ -106,14 +101,20 @@ function previewFile(file) {
     console.log(file.type);
     reader.onloadend = function() {
         maxQuantityImages = checkQuantityimagesBtnDRG(checkQuantityImages);
-        if (maxQuantityImages && (file.type == typeOfFile[0] || file.type == typeOfFile[1])) {
+        fileType = checkTypeOfFile(file);
+        if (maxQuantityImages && fileType) {
             loadImagesInDropZone(reader);
             progressDone();
-        } else {
+        } else  if (!maxQuantityImages){
             removeEventLestenerFromDropArea();
-            return 0;
         }
         checkQuantityImages++;
+    }
+}
+
+function checkTypeOfFile(file){
+    if (file.type == typeOfFile[0] || file.type == typeOfFile[1]){
+        return true;
     }
 }
 
@@ -130,12 +131,8 @@ function loadImagesInDropZone(reader) {
 }
 
 function removeEventLestenerFromDropArea() {
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropArea[0].removeEventListener(eventName, highlight, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropArea[0].removeEventListener(eventName, unhighlight, false);
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea[0].removeEventListener(eventName, checkBacklight, false);
     });
 
     inputFile.type = '';
