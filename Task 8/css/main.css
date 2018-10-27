@@ -34,7 +34,10 @@
     height: 110px;
     padding: 5px;
     margin: 0 10px 10px 0;
-    vertical-align: middle; }
+    vertical-align: middle;
+    cursor: pointer; }
+  .my-images-item img:hover {
+    transform: scale(1.02); }
 
 .disabled {
   display: inline-block;
