@@ -1,5 +1,5 @@
 .drop-area {
-    border: 2px dashed #ccc;
+    border: 2px dashed #cccccc;
     border-radius: 20px;
     width: 80%;
     max-width: 680px;
@@ -11,21 +11,18 @@
         margin-top: 0;
     }
 
-    .my-form {
-        margin-bottom: 10px;
-    }
-
     .button {
         display: inline-block;
         padding: 10px;
-        background: #ccc;
+        background-color: #cccccc;
         cursor: pointer;
         border-radius: 5px;
-        border: 1px solid #ccc;
+        border: 1px solid #cccccc;
+        margin: 0 50% 10px 0;
     }
 
     .button:hover {
-        background: #ddd;
+        background-color: #dddddd;
     }
 
     #fileElem {
@@ -56,10 +53,10 @@
 .disabled {
     display: inline-block;
     padding: 10px;
-    background: #ccc;
+    background-color: #cccccc;
     cursor: pointer;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
 }
 
 .show-image-onclick {
@@ -80,7 +77,7 @@
     }
 
     span{
-        z-index: 1000;
+        z-index: 2;
         position: absolute;
         text-align: right;
         right: 0;
