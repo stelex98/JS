@@ -59,12 +59,11 @@ let arrayCity = ['Астрахань', 'Абакан', 'Анапа', 'Азов',
     'Якутск', 'Ялта', 'Ярославль'
 ];
 
-let oneMinute = 60 * 1, // 60 секунд, обратный отсчет минута
-    display = document.querySelector('#time');
+let oneMinute = 60 * 1; // 60 секунд, обратный отсчет минута
+let display = document.querySelector('#time');
 
 
 ymaps.ready(function() {
-
     showCity();
 });
 
@@ -75,64 +74,65 @@ buttonVoice.addEventListener('click', startRecognizer);
 buttonConfirm.addEventListener('click', userPart);
 
 function showCity() {
-
     myGeocoder = ymaps.geocode("Москва");
-    myGeocoder.then(
-        function(res) {
-            myMap = new ymaps.Map("first_map", {
-                center: res.geoObjects.get(0).geometry.getCoordinates(),
-                zoom: 10
-            });
-        },
-        function(err) {
-            alert('Ошибка');
-        }
-    );
+    myGeocoder.then(successHandler, errorHandler);
+}
+
+function successHandler(res) {
+    myMap = new ymaps.Map("first_map", {
+        center: res.geoObjects.get(0).geometry.getCoordinates(),
+        zoom: 10
+    });
+}
+
+function errorHandler(err) {
+    alert('Ошибка');
 }
 
 window.onload = startGame();
 
 function addedName(name) {
-
     nameUser.innerHTML = name;
 }
 
 function changedLocationOnMap(myGeocoder) {
+  myGeocoder.then(successHandlerAddCity, errorHandlerAddCity);
+}
 
-    myGeocoder.then(
-        function(res) {
-            myMap.setCenter(res.geoObjects.get(0).geometry.getCoordinates());
-            myGeoObject = new ymaps.GeoObject({
-                geometry: {
-                    type: "Point",
-                    coordinates: res.geoObjects.get(0).geometry.getCoordinates()
-                },
-                properties: {
-                    iconContent: 'Ваш город',
-                    hintContent: 'А тут котики :3'
-                }
-            }, {
-                preset: 'islands#blackStretchyIcon',
-                draggable: true
-            });
-            myMap.geoObjects.add(myGeoObject)
+function successHandlerAddCity(res) {
+    let coordinatesCity = res.geoObjects.get(0).geometry.getCoordinates();
+    myMap.setCenter(coordinatesCity);
+
+    myGeoObject = new ymaps.GeoObject({
+        geometry: {
+            type: "Point",
+            coordinates: res.geoObjects.get(0).geometry.getCoordinates()
         },
-        function(err) {
-            alert('Ошибка');
+        properties: {
+            iconContent: 'Ваш город',
+            hintContent: 'А тут котики :3'
         }
-    );
+    }, {
+        preset: 'islands#blackStretchyIcon',
+        draggable: true
+    });
+    myMap.geoObjects.add(myGeoObject)
+}
+
+function errorHandlerAddCity (err){
+  alert('Ошибка');
 }
 
 function startGame() { // начало игры ( пишем имя и рандомим первый ход)
-
     name = prompt("Введите ваше имя: ", "Артур");
     checkNameEmpty = name.trim().length;
+
     if ((name == null) || (checkNameEmpty === 0)) {
         name = 'Player';
-        addedName(name);
-    } else {
-        addedName(name);
     }
+
+    addedName(name);
+
     constArrayCity = arrayCity.slice();
     firstStep = Math.abs(randomStepOfPlayer(0, 1)); // 0 - player, 1 - computer
     computerAndPlayerSteps(firstStep);
@@ -140,31 +140,32 @@ function startGame() { // начало игры ( пишем имя и ранд�
 }
 
 function randomStepOfPlayer(min, max) { // рандомим кто ходит
-
     rand = min - 0.5 + Math.random() * (max - min + 1)
     rand = Math.round(rand);
     return rand;
 }
 
 function computerAndPlayerSteps(firstStep) {
-
     if (firstStep) {
         currentPlayer = 'player';
-        unlockFunctionalOfPlayer();
+        disableOrUnlockFunctionalOfPlayer(false);
+
         clearInterval(clearTime);
         startTimer(oneMinute, display, 'Компьютер');
     } else {
         currentPlayer = 'computer';
-        disableFunctionalOfPlayer();
+        disableOrUnlockFunctionalOfPlayer(true);
+
         clearInterval(clearTime);
         startTimer(oneMinute, display, name);
+
         setTimeout(computerPart, 3000);
     }
 }
 
 function userPart() {
-
     userCity = dataOfInput.value;
+
     if (arrayGame.length == 0) {
         result = find(arrayCity, userCity);
 
@@ -172,13 +173,18 @@ function userPart() {
             arrayGame.push(userCity);
             addCityToDiv(userCity);
             arrayCity.splice(result, 1);
+
             myGeocoder = ymaps.geocode(userCity);
             changedLocationOnMap(myGeocoder);
+
             clearInterval(clearTime);
             startTimer(oneMinute, display, 'Computer');
-            disableFunctionalOfPlayer();
+
+            disableOrUnlockFunctionalOfPlayer(true);
+
             setTimeout(computerPart, 3000);
-        } else {
+        }
+        if (result === -1) {
             alert("Такого города не сущетсвует");
         }
     } else {
@@ -188,33 +194,42 @@ function userPart() {
         firstSymbol = userCity.charAt(0).toUpperCase();
         lastSymbolU = checkErrorsLastSymbol(lastCity).toUpperCase();
 
-        if (lastSymbolU == firstSymbol) {
+        let checkSameSymbol = (lastSymbolU == firstSymbol);
+
+        if (checkSameSymbol) {
             resultFindArrayGame = find(arrayGame, userCity);
             resultFindArrayCity = find(arrayCity, userCity);
 
-            if ((resultFindArrayGame != -1) || (resultFindArrayCity == -1)) {
+            let CheckResultFind = (resultFindArrayGame != -1) || (resultFindArrayCity == -1);
+
+            if (CheckResultFind) {
                 alert("Такой город был введен или его не существует");
             } else {
                 arrayGame.push(userCity);
                 addCityToDiv(userCity);
+
                 myGeocoder = ymaps.geocode(userCity);
                 changedLocationOnMap(myGeocoder);
+
                 arrayCity.splice(resultFindArrayCity, 1);
                 currentPlayer = "player";
-                disableFunctionalOfPlayer();
+                disableOrUnlockFunctionalOfPlayer(true);
+
                 clearInterval(clearTime);
                 startTimer(oneMinute, display, 'Computer');
+
                 setTimeout(computerPart, 3000); // 3000 мс - задержка ответа от компьютера
             }
-        } else {
-            alert("Проверьте символ");
+        }
+
+        if (!checkSameSymbol) {
+            alert('Проверьте символ!');
         }
     }
     currentPlayer = "player";
 }
 
 function computerPart() {
-
     if (currentPlayer == "computer") { //если игрок первый то рандомим слово
         wordComputer = randomStepOfPlayer(0, arrayCity.length);
         lastCity = arrayGame[arrayGame.length - 1];
@@ -260,36 +275,34 @@ function computerPart() {
     }
     clearInterval(clearTime);
     startTimer(oneMinute, display, 'Computer');
-    unlockFunctionalOfPlayer();
+    disableOrUnlockFunctionalOfPlayer(false);
 }
 
 function addCityToDiv(city, currentPearson) {
-
     tegPCity = document.createElement('p');
     tegPCity.innerHTML = city;
     listSityUserBlock.appendChild(tegPCity);
-    if (currentPearson == 'computer') {
-        listSityComputerBlock.appendChild(tegPCity);
-    } else {
+
+    currentPearson == 'computer' ?
+        listSityComputerBlock.appendChild(tegPCity) :
         listSityUserBlock.appendChild(tegPCity);
-    }
 }
 
 function checkErrorsLastSymbol(wordUserComputer) {
-
     charLast = wordUserComputer.slice(-1).toUpperCase();
 
-    if ((charLast == errorLastSymbol[0]) || (charLast == errorLastSymbol[1])) {
-        charLast = wordUserComputer.slice(-2, -1);
-    } else {
+    let isErrorLastSymbol = (charLast == errorLastSymbol[0] || charLast == errorLastSymbol[1]);
+
+    chaLast = isErrorLastSymbol ?
+        charLast = wordUserComputer.slice(-2, -1) :
         charLast = wordUserComputer.slice(-1);
-    }
+
     return charLast;
 }
 
 function find(array, value) {
-
     arrayFindLength = array.length;
+
     for (i = 0; i < arrayFindLength; i++) {
         if (array[i] == value) return i;
     }
@@ -298,7 +311,6 @@ function find(array, value) {
 }
 
 function returnToStartGame() {
-
     arrayCity = JSON.parse(JSON.stringify(constArrayCity));
     arrayGame = [];
     dataOfInput.value = '';
@@ -306,56 +318,55 @@ function returnToStartGame() {
     removeChildFromComputerBlock();
     removeChildFromUserBlock();
 
-    unlockFunctionalOfPlayer();
+    disableOrUnlockFunctionalOfPlayer(false);
     startGame();
 }
 
 function endTheGame() {
-
     clearInterval(clearTime);
     dataOfInput.value = '';
-    disableFunctionalOfPlayer();
+    disableOrUnlockFunctionalOfPlayer(true);
 
     removeChildFromComputerBlock();
     removeChildFromUserBlock();
 }
 
 function removeChildFromComputerBlock() {
-
     while (listSityComputerBlock.firstChild) {
         listSityComputerBlock.removeChild(listSityComputerBlock.firstChild);
     }
 }
 
 function removeChildFromUserBlock() {
-
     while (listSityUserBlock.firstChild) {
         listSityUserBlock.removeChild(listSityUserBlock.firstChild);
     }
 }
 
 function SurrenderGame() {
-
     clearInterval(clearTime);
     endTheGame();
-    disableFunctionalOfPlayer();
+    disableOrUnlockFunctionalOfPlayer(true);
     alert("Победил компьютер!");
 }
 
-function disableFunctionalOfPlayer() {
-
-    buttonConfirm.disabled = true;
-    buttonEndGame.disabled = true;
-}
-
-function unlockFunctionalOfPlayer() {
-
-    buttonConfirm.disabled = false;
-    buttonEndGame.disabled = false;
+function disableOrUnlockFunctionalOfPlayer(check) {
+    if (check) {
+        buttonConfirm.disabled = true;
+        buttonEndGame.disabled = true;
+        buttonSurrender.disabled = true;
+    } else {
+        buttonConfirm.disabled = false;
+        buttonEndGame.disabled = false;
+        buttonSurrender.disabled = false;
+    }
 }
 
 
 function startRecognizer() {
+    if (!('webkitSpeechRecognition' in window)) {
+        return alert('webkitSpeechRecognition не поддерживается :(');
+    }
 
     if ('webkitSpeechRecognition' in window) {
         recognition = new webkitSpeechRecognition();
@@ -363,20 +374,18 @@ function startRecognizer() {
 
         recognition.onresult = function(event) {
             result = event.results[event.resultIndex];
-            dataOfInput.value = result[0].transcript
+            dataOfInput.value = result[0].transcript;
         };
 
         recognition.start();
-    } else {
-        alert('webkitSpeechRecognition не поддерживается :(');
     }
 }
 
 function startTimer(duration, display, currentPlayer) {
-
     let timer = duration,
         minutes, seconds;
     clearTime = setInterval(function() {
+        timer--;
         minutes = parseInt(timer / 60, 10) // 60 секунд, в 10й сс
         seconds = parseInt(timer % 60, 10);
 
@@ -385,10 +394,15 @@ function startTimer(duration, display, currentPlayer) {
 
         display.textContent = `${minutes}:${seconds}`;
 
-        if (--timer < 0) {
-            alert("Время вышло!, победил игрок: " + currentPlayer);
+        if (timer <= 0) {
             clearInterval(clearTime);
+            display.textContent = `${minutes}:${seconds}`;
             timer = duration;
+            setTimeout(alertEvent, 300);
         }
     }, 1000); // 1000 - вызов раз в 1000мс нашу функцию для отсчета времени
+}
+
+function alertEvent() {
+    alert("Время вышло!, победил игрок: " + currentPlayer);
 }

@@ -1,35 +1,55 @@
-.container .row .block-user .confirm-action {
-  margin: 10px 10px 10px 35px; }
-.container .row .block-user .list-city-user {
+.name-user {
+  font-weight: bold;
+  font-size: 1.5em; }
+
+.confirm-action {
+  margin: 10px 0 10px 0;
+  float: right; }
+
+.list-city-user {
   height: 100px;
-  border: 1px solid black;
-  border-radius: 5%;
+  border: 1px solid #000000;
+  border-radius: 5px;
   overflow: auto;
   margin: 3px 0 10px 0;
   align-items: center;
   position: relative; }
-  .container .row .block-user .list-city-user p {
+  .list-city-user p {
     padding: 0px;
     margin: 0 0 0 33%; }
-.container .row .block-complete-repeat-game-button .compelte-game, .container .row .block-complete-repeat-game-button .repeat-game, .container .row .block-complete-repeat-game-button .surrender {
+
+.time {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-left: 10%; }
+
+.compelte-game,
+.repeat-game,
+.surrender {
   margin: 10px;
   width: 80%; }
-.container .row .block-complete-repeat-game-button .voice {
-  margin-left: 30%; }
-.container .row .block-computer .list-city-computer {
+
+.voice {
+  margin-left: 10%; }
+
+.name-computer {
+  font-weight: bold;
+  font-size: 1.5em; }
+
+.list-city-computer {
   height: 100px;
-  border: 1px solid black;
-  border-radius: 5%;
+  border: 1px solid #000000;
+  border-radius: 5px;
   overflow: auto;
   margin: 3px 0 10px 0;
   align-items: center;
   position: relative; }
-  .container .row .block-computer .list-city-computer p {
+  .list-city-computer p {
     padding: 0px;
     margin: 0 0 0 33%; }
-.container .row .block-map {
+
+.block-map {
   width: 300px; }
-  .container .row .block-map .map-yandex {
-    width: 80%;
-    height: 500px;
-    margin-left: 15%; }
+  .block-map .map-yandex {
+    width: 100%;
+    height: 400px; }

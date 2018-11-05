@@ -13,6 +13,7 @@
 <body>
     <div class="container">
         <div class="row">
+            <!-- User block -->
             <div class="col s4 block-user">
                 <p class="name-user">Иван</p>
                 <input placeholder="Введите город" id="first_name" type="text" class="validate">
@@ -20,22 +21,20 @@
                 <div class="list-city-user">
                 </div>
                 <button class="btn waves-effect waves-light confirm-action" type="submit" name="action">Подтвердить
-                    <i class="material-icons right">send</i>
                 </button>
             </div>
+            <!-- button's block -->
             <div class="col s4 block-complete-repeat-game-button">
                 <button class="btn waves-effect waves-light compelte-game" type="submit" name="action">Завершить игру
-                    <i class="material-icons right">send</i>
                 </button>
                 <button class="btn waves-effect waves-light repeat-game" type="submit" name="action">Начать сначала
-                    <i class="material-icons right">send</i>
                 </button>
                 <button class="btn waves-effect waves-light surrender" type="submit" name="action">Сдаться
-                    <i class="material-icons right">send</i>
                 </button>
                 <a class="btn-floating btn-large waves-effect waves-light red voice"><i class="material-icons">keyboard_voice</i></a>
-                <span id="time">01:00</span>
+                <span id="time" class="time">01:00</span>
             </div>
+            <!-- Computer block -->
             <div class="col s4 block-computer">
                 <p class="name-computer">Компьютер</p>
                 <p>Список названных городов:</p>
@@ -43,6 +42,7 @@
                 </div>
             </div>
         </div>
+        <!-- Map block -->
         <div class="row">
             <div class="col s12 block-map">
                 <div id="first_map" class="map-yandex"></div>
@@ -52,7 +52,6 @@
     <script type="text/javascript" src="JS/materialize.min.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=<ваш API-ключ>&lang=ru_RU" type="text/javascript">
     </script>
-    <script type="text/javascript" src="cities.json"></script>
     <script type="text/javascript" src="JS/main.js"></script>
 </body>
 

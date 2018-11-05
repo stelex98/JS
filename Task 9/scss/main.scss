@@ -1,65 +1,70 @@
-.container {
-    .row {
+  .name-user {
+      font-weight: bold;
+      font-size: 1.5em;
+  }
 
-        .block-user {
-            // border: 1px solid black;
+  .confirm-action {
+      margin: 10px 0 10px 0;
+      float: right;
+  }
 
-            .confirm-action {
-                margin: 10px 10px 10px 35px;
-            }
+  .list-city-user {
+      height: 100px;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      overflow: auto;
+      margin: 3px 0 10px 0;
+      align-items: center;
+      position: relative;
 
-            .list-city-user {
-                height: 100px;
-                border: 1px solid black;
-                border-radius: 5%;
-                overflow: auto;
-                margin: 3px 0 10px 0;
-                align-items: center;
-                position: relative;
+      p {
+          padding: 0px;
+          margin: 0 0 0 33%;
+      }
+  }
 
-                p {
-                    padding: 0px;
-                    margin: 0 0 0 33%;
-                }
-            }
+  .time {
+      font-weight: bold;
+      font-size: 1.5em;
+      margin-left: 10%;
+  }
 
-        }
+  .compelte-game,
+  .repeat-game,
+  .surrender {
+      margin: 10px;
+      width: 80%;
+  }
 
-        .block-complete-repeat-game-button {
-            .compelte-game, .repeat-game, .surrender{
-              margin: 10px;
-              width: 80%;
-            }
-            .voice{
-              margin-left: 30%;
-            }
-        }
+  .voice {
+      margin-left: 10%;
+  }
 
-        .block-computer {
-            .list-city-computer {
-                height: 100px;
-                border: 1px solid black;
-                border-radius: 5%;
-                overflow: auto;
-                margin: 3px 0 10px 0;
-                align-items: center;
-                position: relative;
+  .name-computer {
+      font-weight: bold;
+      font-size: 1.5em;
+  }
 
-                p {
-                    padding: 0px;
-                    margin: 0 0 0 33%;
-                }
-            }
+  .list-city-computer {
+      height: 100px;
+      border: 1px solid #000000;
+      border-radius: 5px;
+      overflow: auto;
+      margin: 3px 0 10px 0;
+      align-items: center;
+      position: relative;
 
-        }
+      p {
+          padding: 0px;
+          margin: 0 0 0 33%;
+      }
+  }
 
-        .block-map {
-          width: 300px;
-            .map-yandex{
-              width: 80%;
-              height: 500px;
-              margin-left: 15%;
-            }
-        }
-    }
-}
+  .block-map {
+      width: 300px;
+
+      .map-yandex {
+          width: 100%;
+          height: 400px;
+      }
+  }
