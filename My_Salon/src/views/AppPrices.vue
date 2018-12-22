@@ -1,9 +1,9 @@
 <template>
-    <v-app>
-        <AppHeader></AppHeader>
-        <mainContentPrices></mainContentPrices>
-        <AppFooter></AppFooter>
-    </v-app>
+  <v-app>
+    <AppHeader class="appHeaderServices"></AppHeader>
+    <mainContentPrices></mainContentPrices>
+    <AppFooter></AppFooter>
+  </v-app>
 </template>
 
 <script>
@@ -21,5 +21,9 @@ export default {
 </script>
 
 <style scoped>
-
+.appHeaderServices .container {
+  max-height: 225px;
+  background-image: url(https://visavis.by/sites/all/themes/visavis2/images/top-no1.jpg) !important;
+  background-position: center 80%;
+}
 </style>

@@ -3,20 +3,23 @@
   <v-app>
     <AppHeader class="appHeaderServices"></AppHeader>
     <mainContentServices></mainContentServices>
-    <AppFooter></AppFooter>
+    <AppReviewsSlider></AppReviewsSlider>
+    <AppFooter></AppFooter> 
   </v-app>
 </template>
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
+import AppReviewsSlider from "@/components/AppReviewsSlider.vue";
 import mainContentServices from "@/components/mainContentServices.vue";
 
 export default {
   components: {
     AppHeader,
     AppFooter,
-    mainContentServices
+    mainContentServices,
+    AppReviewsSlider
   }
 };
 </script>

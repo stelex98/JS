@@ -1,8 +1,12 @@
 <template>
   <v-container ma-0 pa-0 fluid>
     <v-layout row justify-center>
-        
-      <v-flex md7 sm7 xs7 d-flex style="margin-top: 5%; margin-bottom: 5%;">
+      <v-flex md7 sm7 xs7 d-flex>
+        <H1>Цены нашего салона</H1>
+      </v-flex>
+    </v-layout>
+    <v-layout row justify-center>
+      <v-flex md7 sm7 xs7 d-flex style="margin-top: 2%; margin-bottom: 5%;">
         <v-card>
           <v-card-title>Каталог цен на все усуги
             <v-spacer></v-spacer>
@@ -52,5 +56,9 @@ export default {
 <style scoped>
 .container {
   background-image: none;
+}
+h1 {
+  font-family: "Cormorant", serif;
+  font-size: 3em;
 }
 </style>
