@@ -1,0 +1,33 @@
+ // Services component (page)
+<template>
+  <v-app>
+    <AppHeader class="appHeaderServices"></AppHeader>
+    <mainContentServices></mainContentServices>
+    <AppFooter></AppFooter>
+  </v-app>
+</template>
+
+<script>
+import AppHeader from "@/components/AppHeader.vue";
+import AppFooter from "@/components/AppFooter.vue";
+import mainContentServices from "@/components/mainContentServices.vue";
+
+export default {
+  components: {
+    AppHeader,
+    AppFooter,
+    mainContentServices
+  }
+};
+</script>
+
+<style>
+.appHeaderServices {
+  height: 212px;
+}
+.appHeaderServices .container {
+  max-height: 225px;
+  background-image: url(https://visavis.by/sites/all/themes/visavis2/images/top-no1.jpg) !important;
+  background-position: center 80%;
+}
+</style>
