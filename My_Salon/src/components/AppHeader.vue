@@ -1,6 +1,6 @@
 // Component Header
 <template>
-<div>
+  <div>
     <v-navigation-drawer absolute temporary v-model="drawer" class="hidden-md-and-up">
       <v-list>
         <v-list-tile v-for="(item, i) in menuItems" :key="`navDrawer${i}`">
@@ -28,10 +28,12 @@
             >
           </router-link>
         </v-flex>
-        <v-flex md4 sm4 xs6 align-center class="text-md-center" wrap>
-          <v-btn class="transparent white--text">Авторизация</v-btn>
-          <v-btn class="transparent white--text">Регистрация</v-btn>
-        </v-flex>
+          <v-flex md4 sm4 xs6 align-center class="text-md-center" wrap>
+            <v-layout row wrap>
+            <formReg></formReg>
+            <formAuth></formAuth>
+            </v-layout>
+          </v-flex>
       </v-layout>
 
       <v-layout>
@@ -53,7 +55,14 @@
 </template>
 
 <script>
+import formReg from "@/components/formRegistration";
+import formAuth from "@/components/formAuthorization";
+
 export default {
+  components: {
+    formReg,
+    formAuth
+  },
   data() {
     return {
       drawer: false
@@ -64,7 +73,7 @@ export default {
       return this.$store.getters.returnDataOfMenuItems;
     },
     listAdressPhone() {
-       return this.$store.getters.returnDataOfAdressPhone;
+      return this.$store.getters.returnDataOfAdressPhone;
     }
   }
 };

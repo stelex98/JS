@@ -36,15 +36,26 @@ export default {
                 namePearson: "Егор Дружинин",
                 src: "https://visavis.by/sites/all/themes/visavis2/images/forms.jpg"
             }
-        ]
+        ],
+        checkAuth: false,
     },
     mutations: {
+        addNewReviews(state, payload) { // добавляем новые акции
+            state.dataReviewsSlider.push(payload);
+        }
     },
     actions: {
+        addNewReviews({ commit }, payload) { // обычное событие вызвыающие мутацию, в данном случае добавление новых акций
+            console.log(payload);
+            commit('addNewReviews', payload)
+        }
     },
     getters: {
         returnDataReviewsSlider(state) {
             return state.dataReviewsSlider
+        },
+        returnDataCheckAuthorization(state) {
+            return state.checkAuth
         }
     }
 }
