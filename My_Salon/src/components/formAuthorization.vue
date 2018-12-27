@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import uploadButton from "@/components/fileUploadButton.vue";
 
 export default {
   data() {

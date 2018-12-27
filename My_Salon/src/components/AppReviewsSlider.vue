@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid ma-0 pa-0>
-      <v-parallax height="700" src="https://visavis.by/sites/all/themes/visavis2/images/forms.jpg">
+      <v-parallax height="800" src="https://visavis.by/sites/all/themes/visavis2/images/forms.jpg">
         <v-layout row wrap text-xs-center>
           <v-flex align-self-center md4 sm12 xs12>
             <v-flex>
@@ -12,7 +12,7 @@
               </h1>
             </v-flex>
             <v-flex>
-              <v-btn>Отзывы всех клиентов</v-btn>
+              <v-btn to="/reviews">Отзывы всех клиентов</v-btn>
             </v-flex>
           </v-flex>
           <v-flex align-self-center md8 xs12>

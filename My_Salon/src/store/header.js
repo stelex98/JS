@@ -23,7 +23,7 @@ export default {
                 route: "/contacts"
             },
             {
-                title: "Запись",
+                title: "Акции",
                 route: "/record"
             }
         ],
