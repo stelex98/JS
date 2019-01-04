@@ -1,17 +1,20 @@
 <template>
-    <div>
-        <AppHeader class="appHeaderServices"></AppHeader>
-        <AppFooter></AppFooter>
-    </div>
+  <v-app>
+    <AppHeader class="appHeaderServices"></AppHeader>
+    <mainContentStock></mainContentStock>
+    <AppFooter></AppFooter>
+  </v-app>
 </template>
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
+import mainContentStock from "@/components/mainContentStock.vue";
 
 export default {
   components: {
     AppHeader,
+    mainContentStock,
     AppFooter
   }
 };

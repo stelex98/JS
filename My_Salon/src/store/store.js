@@ -6,6 +6,7 @@ import header from './header'
 import homeServices from './homeServices'
 import reviewsSlider from './reviewsSlider'
 import price from './price'
+import stock from './stock'
 
 Vue.use(Vuex)
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
     header,
     homeServices,
     reviewsSlider,
-    price
+    price,
+    stock
 
   }
   // state: { // общее состояние приложения ( все текущие )

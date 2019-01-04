@@ -6,7 +6,8 @@ import AppServices from '@/views/AppServices.vue'
 import AppContacts from '@/views/AppContacts.vue'
 import AppPrices from '@/views/AppPrices.vue'
 import AppReviews from '@/views/AppReviews.vue'
-import AppSignUpServices from '@/views/AppSignUpServices.vue'
+import AppStock from '@/views/AppStock.vue'
+import AppAdminPage from '@/views/AppAdminPage.vue'
 
 
 Vue.use(Router)
@@ -39,9 +40,14 @@ export default new Router({
       component: AppReviews
     },
     {
-      path: '/record',
-      name: 'record',
-      component: AppSignUpServices
+      path: '/stock',
+      name: 'stock',
+      component: AppStock
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: AppAdminPage
     },
   ],
   mode: 'history'

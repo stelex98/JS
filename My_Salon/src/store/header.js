@@ -24,7 +24,7 @@ export default {
             },
             {
                 title: "Акции",
-                route: "/record"
+                route: "/stock"
             }
         ],
         dataListAdressPhone: [ // адрес и телефон в header
