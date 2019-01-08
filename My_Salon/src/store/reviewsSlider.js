@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default {
+    namespaced: true,
     state: {
         dataReviewsSlider: [
             {
@@ -51,9 +52,6 @@ export default {
         }
     },
     getters: {
-        returnDataReviewsSlider(state) {
-            return state.dataReviewsSlider
-        },
         returnDataCheckAuthorization(state) {
             return state.checkAuth
         }

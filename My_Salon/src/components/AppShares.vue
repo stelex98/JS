@@ -26,30 +26,15 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
-  // data: () => {
-  //   return {
-  //     items: [
-  //       {
-  //         title: "Розыгрыш в нашем салоне",
-  //         describe:
-  //           "Listen to your favorite artists and albums whenever and wherever, online and offline. Listen to your favorite artists and albums whenever and wherever, online and offline."
-  //       }
-  //     ]
-  //   };
-  // },
   computed: {
-    dataShares() {
-      return this.$store.getters.returnDataOfShares;
-    },
-    returnDataPriceDesserts(){
-      return this.$store.getters.returnDataPriceDesserts;
-    }
+    ...mapState("shares", {
+      dataShares: "dataShares"
+    })
   },
   methods: { // добавление новых акций
-    // addShares() {
-    //   this.$store.dispatch("newShares", this.items[0]);
-    // }
     a(index){
       console.log(index);
     }

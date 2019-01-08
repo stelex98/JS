@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default{
+  namespaced: true,
   state: { 
     dataShares: [ // данные акций
       {
@@ -28,8 +29,5 @@ export default{
   actions: {
   },
   getters: {
-    returnDataOfShares(state) { // возвращаем наши акции
-      return state.dataShares
-    }
   }
 }

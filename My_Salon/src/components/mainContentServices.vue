@@ -54,6 +54,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -67,27 +69,29 @@ export default {
     };
   },
   computed: {
+    ...mapState("homeServices",{
+      dataServices: "servicesContent",
+      describeServices: "describeForItemServices"
+    }),
+    
     servicesContent() {
-      return this.$store.getters.returnServicesContent;
+      return this.dataServices;
     }
   },
   mounted(event) {
-    this.selected = this.$store.getters.returnServicesContent;
+    this.selected = this.dataServices;
 
     console.log(event);
   },
   methods: {
     returnDescribe(ev) {
-      console.log(ev);
-      for (let i = 0; i < this.$store.getters.returnDescribe.length; i++) {
-        if (ev == this.$store.getters.returnDescribe[i].Title) {
+      for (let i = 0; i < this.describeServices.length; i++) {
+        if (ev == this.describeServices[i].Title) {
          this.describe.length = 0;
-          this.describe.push(this.$store.getters.returnDescribe[i]);
+          this.describe.push(this.describeServices[i]);
           console.log(this.describe);
         }
       }
-
-      //return this.$store.getters.returnDescribe;
     }
   }
 };

@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default {
+    namespaced: true,
     state: { // общее состояние приложения ( все текущие )
         dataHomeServices: [
             {
@@ -117,14 +118,5 @@ export default {
     actions: {
     },
     getters: {
-        returnDataHomeServices(state) { // возвращаем наши акции
-            return state.dataHomeServices
-        },
-        returnServicesContent(state) { // возвращаем наши акции
-            return state.servicesContent
-        },
-        returnDescribe(state) { // возвращаем наши акции
-            return state.describeForItemServices
-        }
     }
 }

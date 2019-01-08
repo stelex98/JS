@@ -69,6 +69,7 @@
 
 <script>
 import fileUploadButton from "@/components/fileUploadButton.vue";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
@@ -80,18 +81,25 @@ export default {
   components: {
     fileUploadButton
   },
+  computed: {
+    ...mapState("stock", {
+      DataOfCurrentStockForAdmin: "currentStockForAdmin"
+    })
+  },
   methods: {
-    editInformationStock() {
-      this.currentStock = this.$store.getters.returnDataOfCurrentStockForAdmin;
+    ...mapActions("stock",["editStockArray"]),
 
-      this.currentStock[0].titleStock = this.$store.getters.returnDataOfCurrentStockForAdmin[0].title;
+    editInformationStock() {
+      this.currentStock = this.DataOfCurrentStockForAdmin;
+      this.currentStock[0].titleStock = this.DataOfCurrentStockForAdmin[0].title;
     },
+
     saveEditedInf() {
       this.currentStock[0].title = this.currentStock[0].titleStock;
 
       delete this.currentStock[0].titleStock;
 
-      this.$store.dispatch("editStockArray", this.currentStock);
+      this.editStockArray(this.currentStock);
       this.dialog = false;
     }
   }

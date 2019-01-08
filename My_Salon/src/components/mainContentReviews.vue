@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -92,6 +94,8 @@ export default {
     };
   },
   methods: {
+    ...mapActions("reviewsSlider",['addNewReviews']),
+
     addReviews() {
       this.dialog = false;
       let myReviews = {
@@ -99,16 +103,21 @@ export default {
         namePearson: "Адамович Артур",
         src: "https://visavis.by/sites/all/themes/visavis2/images/forms.jpg"
       };
-      this.$store.dispatch("addNewReviews", myReviews);
+      this.addNewReviews(myReviews);
       this.textReviews = null;
     }
   },
   computed: {
+    ...mapState("reviewsSlider",{
+      arrayRivews: "dataReviewsSlider",
+      checkAthorization: "checkAuth"
+    }),
     returnDataReviewsSlider() {
-      return this.$store.getters.returnDataReviewsSlider;
+      return this.arrayRivews;
     },
+
     returnDataCheckAuthorization() {
-      return this.$store.getters.returnDataCheckAuthorization;
+      return this.checkAthorization;
     }
   }
 };

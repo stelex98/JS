@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -45,11 +47,16 @@ export default {
       desserts: []
     };
   },
-  mounted() {
-    this.headers.push(this.$store.getters.returnDataPriceHeaders);
-    this.desserts.push(this.$store.getters.returnDataPriceDesserts);
+  computed: {
+    ...mapState("price", {
+      arrayPriceHeaders: "headers",
+      arrayPriceDesserts: "desserts"
+    })
   },
-  computed: {}
+  mounted() {
+    this.headers.push(this.arrayPriceHeaders);
+    this.desserts.push(this.arrayPriceDesserts);
+  }
 };
 </script>
 

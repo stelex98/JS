@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+const namespaced = true;
 
 export default {
+    namespaced, 
     state: {
         dataMenuItems: [ // данные меню в header
             {
@@ -39,11 +41,5 @@ export default {
     actions: {
     },
     getters: {
-        returnDataOfMenuItems(state) {
-            return state.dataMenuItems
-        },
-        returnDataOfAdressPhone(state) {
-            return state.dataListAdressPhone
-        }
     }
 }

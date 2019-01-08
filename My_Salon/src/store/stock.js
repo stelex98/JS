@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default {
+    namespaced: true,
     state: {
         stock: [
             {
@@ -93,15 +94,6 @@ export default {
         },
     },
     getters: {
-        returnDataOfStock(state) {
-            return state.stock;
-        },
-        returnDataOfCurrentStock(state) {
-            return state.currentStock;
-        },
-        returnDataOfCurrentStockForAdmin(state) {
-            return state.currentStockForAdmin;
-        },
         returnDataOfMasters(state) {
             return state.masters;
         },

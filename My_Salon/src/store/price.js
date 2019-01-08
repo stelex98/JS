@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default {
+    namespaced: true,
     state: {
         headers: [
             {
@@ -73,11 +74,9 @@ export default {
     },
     getters: {
         returnDataPriceHeaders(state) {
-            console.log(state.headers);
             return state.headers
         },
         returnDataPriceDesserts(state) {
-            console.log(state.headers);
             return state.desserts
         }
     }

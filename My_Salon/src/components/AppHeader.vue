@@ -28,12 +28,12 @@
             >
           </router-link>
         </v-flex>
-          <v-flex md4 sm4 xs6 align-center class="text-md-center" wrap>
-            <v-layout row wrap>
+        <v-flex md4 sm4 xs6 align-center class="text-md-center" wrap>
+          <v-layout row wrap>
             <formReg></formReg>
             <formAuth></formAuth>
-            </v-layout>
-          </v-flex>
+          </v-layout>
+        </v-flex>
       </v-layout>
 
       <v-layout>
@@ -57,6 +57,7 @@
 <script>
 import formReg from "@/components/formRegistration";
 import formAuth from "@/components/formAuthorization";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -69,12 +70,10 @@ export default {
     };
   },
   computed: {
-    menuItems() {
-      return this.$store.getters.returnDataOfMenuItems;
-    },
-    listAdressPhone() {
-      return this.$store.getters.returnDataOfAdressPhone;
-    }
+    ...mapState("header",{
+      menuItems: 'dataMenuItems',
+      listAdressPhone: 'dataListAdressPhone'
+    }),
   }
 };
 </script>

@@ -33,7 +33,7 @@
                         <formEditForStock></formEditForStock>
                       </v-flex>
                       <v-flex d-flex>
-                        <v-btn flat icon color="lighten-2" @click="deleteCurrentStock(index)">
+                        <v-btn flat icon color="lighten-2" @click="deleteCurrentStockLocal(index)">
                           <v-icon color="yellow darken-2">delete</v-icon>
                         </v-btn>
                       </v-flex>
@@ -53,6 +53,7 @@
 <script>
 import formEditForStock from "@/components/formEditForStock.vue";
 import formAddNewStock from "@/components/formAddNewStock.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
@@ -64,16 +65,18 @@ export default {
     return {};
   },
   computed: {
-    arrayOfStock() {
-      return this.$store.getters.returnDataOfStock;
-    }
+    ...mapState("stock", {
+      arrayOfStock: "stock"
+    })
   },
   methods: {
-    deleteCurrentStock(index) {
-      this.$store.dispatch("deleteCurrentStock", index);
+     ...mapActions("stock", ["deleteCurrentStock", "addNewCurrentStockAdmin"]),
+
+    deleteCurrentStockLocal(index) {
+      this.deleteCurrentStock(index);
     },
     addIndexCurrentStock(index) {
-      this.$store.dispatch("addNewCurrentStockAdmin", index);
+      this.addNewCurrentStockAdmin(index);
     }
   }
 };

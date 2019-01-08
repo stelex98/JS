@@ -46,20 +46,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import formSignUpService from "@/components/formSignUpService.vue";
+
 export default {
     components: {
         formSignUpService
     },
   methods: {
+    ...mapActions("stock", ["addNewCurrentStock"]),
+
     currentStock(index){
-        this.$store.dispatch("addNewCurrentStock", index);
+        this.addNewCurrentStock(index);
     }
   },
   computed: {
-    dataOfStock() {
-      return this.$store.getters.returnDataOfStock;
-    }
+      ...mapState("stock",{
+      dataOfStock: "stock"
+    }),
   },
   watch: {
     a(){

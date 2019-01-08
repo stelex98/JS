@@ -46,11 +46,13 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   computed: {
-    reviewsItems() {
-      return this.$store.getters.returnDataReviewsSlider;
-    }
+    ...mapState("reviewsSlider", {
+      reviewsItems: "dataReviewsSlider"
+    })
   }
 };
 </script>

@@ -10,7 +10,12 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm6 md6>
-                <v-select v-model="choosedTypeService" disabled :items="TypeOfServices" label="Тип услуги"></v-select>
+                <v-select
+                  v-model="choosedTypeService"
+                  disabled
+                  :items="TypeOfServices"
+                  label="Тип услуги"
+                ></v-select>
               </v-flex>
               <v-flex xs12 sm6 md6>
                 <v-select v-model="choosedService" :items="services" disabled label="Услуга"></v-select>
@@ -68,6 +73,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   data: vm => ({
     dialog: false,
@@ -82,12 +89,20 @@ export default {
     choosedService: null
   }),
   computed: {
+    ...mapState("stock", {
+      arrayStock: "stock",
+      arrayMasters: "masters",
+      dataCurrentStock: "currentStock"
+    }),
+    ...mapState("homeServices", {
+      arrayServicesContent: "servicesContent"
+    }),
     computedDateFormatted() {
       return this.formatDate(this.date);
     },
-    
+
     returnServicesContent() {
-      return this.$store.getters.returnServicesContent;
+      return this.arrayServicesContent;
     }
   },
   watch: {
@@ -118,24 +133,27 @@ export default {
     },
 
     check(index) {
-      let objectAllServices = this.$store.getters.returnServicesContent;
-      let objectAllStock = this.$store.getters.returnDataOfStock;
-      let currentStockIndex = this.$store.getters.returnDataOfCurrentStock;
-
-      let objectAllMaters = this.$store.getters.returnDataOfMasters;
+      //let objectAllServices = this.$store.getters.returnServicesContent;
+      let objectAllServices = this.arrayServicesContent;
+      console.log(objectAllServices);
+      //let objectAllStock = this.$store.getters.returnDataOfStock;
+      let objectAllStock = this.arrayStock;
+      //let currentStockIndex = this.$store.getters.returnDataOfCurrentStock;
+      let currentStockIndex = this.dataCurrentStock;
+      //let objectAllMaters = this.$store.getters.returnDataOfMasters;
+      let objectAllMaters = this.arrayMasters;
 
       for (let i = 0; i < objectAllServices.length; i++) {
         this.TypeOfServices.push(objectAllServices[i].globalName);
-       
-         for (let j = 0; j < objectAllServices[i].itemsServices.length; j++){
-              this.services.push(objectAllServices[i].itemsServices[j]);
-         }
+
+        for (let j = 0; j < objectAllServices[i].itemsServices.length; j++) {
+          this.services.push(objectAllServices[i].itemsServices[j]);
+        }
       }
 
-       for (let i = 0; i < objectAllMaters.length; i++) {
-         this.TypeOfMasters.push(objectAllMaters[i]);
-       }
-      
+      for (let i = 0; i < objectAllMaters.length; i++) {
+        this.TypeOfMasters.push(objectAllMaters[i]);
+      }
 
       this.choosedTypeService = objectAllStock[currentStockIndex].typeService;
       this.choosedService = objectAllStock[currentStockIndex].service;

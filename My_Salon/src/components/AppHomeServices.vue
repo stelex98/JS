@@ -27,11 +27,13 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   computed: {
-    mainServices() {
-      return this.$store.getters.returnDataHomeServices;
-    }
+    ...mapState("homeServices", {
+      mainServices: "dataHomeServices"
+    })
   }
 };
 </script>

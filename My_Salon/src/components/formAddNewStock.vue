@@ -86,7 +86,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click="dialog = false">Закрыть</v-btn>
-          <v-btn color="blue darken-1" flat @click="saveNewInf">Сохранить</v-btn>
+          <v-btn color="blue darken-1" flat @click="saveNewInf(newStockObg)">Сохранить</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -95,6 +95,7 @@
 
 <script>
 import fileUploadButton from "@/components/fileUploadButton.vue";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -118,12 +119,13 @@ export default {
     fileUploadButton
   },
   methods: {
-    saveNewInf() {
-      console.log(this.newStockObg);
-      this.$store.dispatch("addNewStock", this.newStockObg);
+    ...mapActions("stock", ["addNewStock"]),
 
+    saveNewInf() {
       this.dialog = false;
+      this.addNewStock(this.newStockObg);
     },
+
     resetData() {
       this.newStockObg.price = "";
       this.newStockObg.service = "";
