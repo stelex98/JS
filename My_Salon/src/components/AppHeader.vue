@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import formReg from "@/components/formRegistration";
-import formAuth from "@/components/formAuthorization";
+import formReg from "@/components/forms/formRegistration";
+import formAuth from "@/components/forms/formAuthorization";
 import { mapState } from "vuex";
 
 export default {

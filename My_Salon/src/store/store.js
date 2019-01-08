@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import shares from './shares'
-import header from './header'
-import homeServices from './homeServices'
-import reviewsSlider from './reviewsSlider'
-import price from './price'
-import stock from './stock'
+import shares from './shares/shares'
+import header from './Header/header'
+import homeServices from './HomeServices/homeServices'
+import reviewsSlider from './reviewsSlider/reviewsSlider'
+import price from './Price/price'
+import stock from './stock/stock'
 
 Vue.use(Vuex)
 

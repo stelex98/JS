@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from './views/Home.vue'
-import AppServices from '@/views/AppServices.vue'
-import AppContacts from '@/views/AppContacts.vue'
-import AppPrices from '@/views/AppPrices.vue'
-import AppReviews from '@/views/AppReviews.vue'
-import AppStock from '@/views/AppStock.vue'
-import AppAdminPage from '@/views/AppAdminPage.vue'
+import Home from './views/mainPages/Home.vue'
+import AppServices from '@/views/mainPages/AppServices.vue'
+import AppContacts from '@/views/mainPages/AppContacts.vue'
+import AppPrices from '@/views/mainPages/AppPrices.vue'
+import AppReviews from '@/views/mainPages/AppReviews.vue'
+import AppStock from '@/views/mainPages/AppStock.vue'
+import AppAdminPage from '@/views/mainPages/AppAdminPage.vue'
 
 
 Vue.use(Router)
